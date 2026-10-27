@@ -1,0 +1,169 @@
+[
+ {
+  "id": 7,
+  "nombre": "Barrenador del tallo",
+  "nombre_cientifico": "Diatraea saccharalis",
+  "cultivos_afectados": [
+   3
+  ],
+  "tipo_desarrollo": "completo",
+  "etapas": [
+   "HUEVO",
+   "LARVA",
+   "ADULTO"
+  ],
+  "modelo_termico": true
+ },
+ {
+  "id": 3,
+  "nombre": "Chicharrita del maíz",
+  "nombre_cientifico": "Dalbulus maidis",
+  "cultivos_afectados": [
+   3
+  ],
+  "tipo_desarrollo": "incompleto",
+  "etapas": [
+   "HUEVO",
+   "NINFA",
+   "ADULTO"
+  ],
+  "modelo_termico": true
+ },
+ {
+  "id": 11,
+  "nombre": "Chinche de la alfalfa",
+  "nombre_cientifico": "Piezodorus guildinii",
+  "cultivos_afectados": [
+   1,
+   2
+  ],
+  "tipo_desarrollo": "incompleto",
+  "etapas": [
+   "HUEVO",
+   "NINFA",
+   "ADULTO"
+  ],
+  "modelo_termico": true
+ },
+ {
+  "id": 10,
+  "nombre": "Chinche verde común",
+  "nombre_cientifico": "Nezara viridula",
+  "cultivos_afectados": [
+   2
+  ],
+  "tipo_desarrollo": "incompleto",
+  "etapas": [
+   "HUEVO",
+   "NINFA",
+   "ADULTO"
+  ],
+  "modelo_termico": true
+ },
+ {
+  "id": 6,
+  "nombre": "Oruga cogollera",
+  "nombre_cientifico": "Spodoptera frugiperda",
+  "cultivos_afectados": [
+   3
+  ],
+  "tipo_desarrollo": "completo",
+  "etapas": [
+   "HUEVO",
+   "LARVA",
+   "ADULTO"
+  ],
+  "modelo_termico": true
+ },
+ {
+  "id": 9,
+  "nombre": "Oruga de las leguminosas",
+  "nombre_cientifico": "Anticarsia gemmatalis",
+  "cultivos_afectados": [
+   2
+  ],
+  "tipo_desarrollo": "completo",
+  "etapas": [
+   "HUEVO",
+   "LARVA",
+   "ADULTO"
+  ],
+  "modelo_termico": true
+ },
+ {
+  "id": 8,
+  "nombre": "Oruga medidora",
+  "nombre_cientifico": "Rachiplusia nu",
+  "cultivos_afectados": [
+   2
+  ],
+  "tipo_desarrollo": "completo",
+  "etapas": [
+   "HUEVO",
+   "LARVA",
+   "ADULTO"
+  ],
+  "modelo_termico": false
+ },
+ {
+  "id": 12,
+  "nombre": "Oruga militar verdadera",
+  "nombre_cientifico": "Pseudaletia adultera",
+  "cultivos_afectados": [
+   1
+  ],
+  "tipo_desarrollo": "completo",
+  "etapas": [
+   "HUEVO",
+   "LARVA",
+   "ADULTO"
+  ],
+  "modelo_termico": false
+ },
+ {
+  "id": 4,
+  "nombre": "PlagaPrueba",
+  "nombre_cientifico": "PlagaCientifica",
+  "cultivos_afectados": [
+   1
+  ],
+  "tipo_desarrollo": null,
+  "etapas": [
+   "HUEVO",
+   "NINFA",
+   "LARVA",
+   "ADULTO"
+  ],
+  "modelo_termico": false
+ },
+ {
+  "id": 14,
+  "nombre": "Pulgón de la espiga",
+  "nombre_cientifico": "Sitobion avenae",
+  "cultivos_afectados": [
+   1
+  ],
+  "tipo_desarrollo": "incompleto",
+  "etapas": [
+   "HUEVO",
+   "NINFA",
+   "ADULTO"
+  ],
+  "modelo_termico": true
+ },
+ {
+  "id": 13,
+  "nombre": "Pulgón verde de los cereales",
+  "nombre_cientifico": "Schizaphis graminum",
+  "cultivos_afectados": [
+   1
+  ],
+  "tipo_desarrollo": "incompleto",
+  "etapas": [
+   "HUEVO",
+   "NINFA",
+   "ADULTO"
+  ],
+  "modelo_termico": true
+ }
+]

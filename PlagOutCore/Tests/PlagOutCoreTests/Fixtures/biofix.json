@@ -1,0 +1,24 @@
+{
+ "observacion_id": "6b1f6c1e-3f6a-4b8e-9d55-2f0c1e0a9a11",
+ "reporte_id": 301,
+ "reporte_creado": true,
+ "ciclo_id": 41,
+ "ciclo_creado": true,
+ "ciclo": {
+  "id": 41,
+  "monitoreo_id": 12,
+  "fecha_biofix": "2026-10-05",
+  "estado": "activo",
+  "fecha_actualizacion": "2026-10-26",
+  "gdd_diario": 11.4,
+  "gdd_acumulado": 182.6,
+  "gdd_acumulado_huevo": 95.0,
+  "gdd_eclosion": 120.0,
+  "gdd_generacion": 520.0,
+  "progreso": 79.2,
+  "estadio_biologico": "HUEVO",
+  "nivel_alerta": 2,
+  "fecha_eclosion": null,
+  "dias_pendientes": 0
+ }
+}

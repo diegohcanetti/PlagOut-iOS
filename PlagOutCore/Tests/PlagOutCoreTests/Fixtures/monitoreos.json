@@ -1,0 +1,80 @@
+{
+ "items": [
+  {
+   "id": 12,
+   "plantacion_id": 5,
+   "terreno_id": 3,
+   "terreno_nombre": "Lote Norte",
+   "cultivo_nombre": "Maíz",
+   "plaga_id": 6,
+   "plaga_nombre": "Oruga cogollera",
+   "plaga_nombre_cientifico": "Spodoptera frugiperda",
+   "gdd_objetivo": 120.0,
+   "fecha_inicio": "2026-09-01",
+   "umbral_riesgo": 75,
+   "activo": true,
+   "observaciones": null,
+   "alertas_ml_activas": false,
+   "umbral_alerta_ml_recomendado": null,
+   "modelo_alerta_ml_id": null,
+   "horizonte_alerta_ml_dias": null,
+   "ciclos": [
+    {
+     "id": 30,
+     "monitoreo_id": 12,
+     "fecha_biofix": "2026-09-02",
+     "estado": "archivado",
+     "fecha_actualizacion": "2026-10-01",
+     "gdd_diario": 0.0,
+     "gdd_acumulado": 540.0,
+     "gdd_acumulado_huevo": null,
+     "gdd_eclosion": 120.0,
+     "gdd_generacion": 520.0,
+     "progreso": 100.0,
+     "estadio_biologico": "ADULTO",
+     "nivel_alerta": 3,
+     "fecha_eclosion": "2026-09-14",
+     "dias_pendientes": 0
+    },
+    {
+     "id": 41,
+     "monitoreo_id": 12,
+     "fecha_biofix": "2026-10-05",
+     "estado": "activo",
+     "fecha_actualizacion": "2026-10-26",
+     "gdd_diario": 11.4,
+     "gdd_acumulado": 182.6,
+     "gdd_acumulado_huevo": 95.0,
+     "gdd_eclosion": 120.0,
+     "gdd_generacion": 520.0,
+     "progreso": 79.2,
+     "estadio_biologico": "HUEVO",
+     "nivel_alerta": 2,
+     "fecha_eclosion": null,
+     "dias_pendientes": 0
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "plantacion_id": 5,
+   "terreno_id": 3,
+   "terreno_nombre": "Lote Norte",
+   "cultivo_nombre": "Maíz",
+   "plaga_id": 7,
+   "plaga_nombre": "Barrenador del tallo",
+   "plaga_nombre_cientifico": "Diatraea saccharalis",
+   "gdd_objetivo": null,
+   "fecha_inicio": "2026-09-01",
+   "umbral_riesgo": null,
+   "activo": true,
+   "observaciones": null,
+   "alertas_ml_activas": false,
+   "umbral_alerta_ml_recomendado": null,
+   "modelo_alerta_ml_id": null,
+   "horizonte_alerta_ml_dias": null,
+   "ciclos": []
+  }
+ ],
+ "total": 2
+}

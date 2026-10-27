@@ -1,0 +1,17 @@
+{
+ "id": 41,
+ "monitoreo_id": 12,
+ "fecha_biofix": "2026-10-05",
+ "estado": "activo",
+ "fecha_actualizacion": "2026-10-26",
+ "gdd_diario": 11.4,
+ "gdd_acumulado": 182.6,
+ "gdd_acumulado_huevo": 95.0,
+ "gdd_eclosion": 120.0,
+ "gdd_generacion": 520.0,
+ "progreso": 79.2,
+ "estadio_biologico": "HUEVO",
+ "nivel_alerta": 2,
+ "fecha_eclosion": null,
+ "dias_pendientes": 0
+}

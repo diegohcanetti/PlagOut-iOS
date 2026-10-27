@@ -1,0 +1,15 @@
+{
+ "items": [
+  {
+   "id": 5,
+   "terreno_id": 3,
+   "terreno_nombre": "Lote Norte",
+   "cultivo_id": 1,
+   "cultivo_nombre": "Maíz",
+   "cultivo_nombre_cientifico": "Zea mays",
+   "fecha_siembra": "2026-09-01",
+   "activa": true
+  }
+ ],
+ "total": 1
+}

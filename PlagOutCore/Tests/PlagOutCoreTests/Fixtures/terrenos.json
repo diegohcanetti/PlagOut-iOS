@@ -1,0 +1,12 @@
+{
+ "items": [
+  {
+   "id": 3,
+   "terreno_nombre": "Lote Norte",
+   "terreno_latitud": -34.6,
+   "terreno_longitud": -60.9,
+   "terreno_area": 42.5
+  }
+ ],
+ "total": 1
+}

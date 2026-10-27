@@ -1,0 +1,11 @@
+{
+ "id": "00000000-0000-4000-8000-000000000001",
+ "nombre": "Ana",
+ "apellido": "Productora",
+ "email": "ana@example.com",
+ "cargo": "Ing Agronomo",
+ "radio_notificacion_km": 20.0,
+ "fecha_creacion": "2026-10-21",
+ "rol": "usuario",
+ "activo": true
+}

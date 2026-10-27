@@ -1,0 +1,20 @@
+{
+ "id": 55,
+ "monitoreo_id": 12,
+ "plantacion_id": 5,
+ "plaga_id": 6,
+ "plaga_nombre_cientifico": "Spodoptera frugiperda",
+ "fecha": "2026-10-26",
+ "model_id": "risk-sf-7d-v3",
+ "horizon_days": 7,
+ "probabilidad_porcentaje": 68.4,
+ "umbral_modelo_recomendado_porcentaje": 55.0,
+ "umbral_efectivo_porcentaje": 60.0,
+ "confirmacion": {
+  "estado": "pendiente",
+  "solicitada_en": "2026-10-26T12:00:00Z",
+  "expira_en": "2026-11-02T12:00:00Z",
+  "respuesta": null,
+  "respondido_en": null
+ }
+}
