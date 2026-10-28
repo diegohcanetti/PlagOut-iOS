@@ -1,0 +1,5 @@
+// Los mismos valores que la APK 2.0. La clave publicable de Supabase es pública por diseño.
+// En un .xcconfig "//" empieza un comentario: por eso las URLs llevan "/$()/".
+BACKEND_URL = https:/$()/plag-out-backend.vercel.app
+SUPABASE_URL = https:/$()/hlurqqxmnhwzpogmwbpj.supabase.co
+SUPABASE_PUBLISHABLE_KEY = sb_publishable_0heoo5kZXP6qzOQZfZFniA_AwqjbE7T
