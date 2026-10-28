@@ -1,0 +1,29 @@
+{
+ "nivel": "grupos",
+ "grupos": [
+  {
+   "latitud": -37.4,
+   "longitud": -59.1,
+   "cantidad": 1,
+   "severidad_max": "Medio"
+  },
+  {
+   "latitud": -35.1,
+   "longitud": -65.3,
+   "cantidad": 9,
+   "severidad_max": "Alto"
+  },
+  {
+   "latitud": -35.5,
+   "longitud": -59.7,
+   "cantidad": 6,
+   "severidad_max": "Medio"
+  }
+ ],
+ "total": 29,
+ "cultivos": [
+  "Maíz",
+  "Soja",
+  "Trigo"
+ ]
+}

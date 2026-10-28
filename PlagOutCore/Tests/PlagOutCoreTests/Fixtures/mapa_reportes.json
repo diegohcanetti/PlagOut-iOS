@@ -1,0 +1,47 @@
+{
+ "nivel": "reportes",
+ "reportes": [
+  {
+   "id": 99,
+   "plaga_id": 6,
+   "plaga_nombre": "Oruga cogollera",
+   "cultivo_nombre": "Maíz",
+   "nivel_severidad": "Bajo",
+   "latitud": -35.0,
+   "longitud": -65.5,
+   "timestamp_ms": 1792882913454,
+   "es_propio": false,
+   "distancia_km": null
+  },
+  {
+   "id": 98,
+   "plaga_id": 7,
+   "plaga_nombre": "Barrenador del tallo",
+   "cultivo_nombre": "Maíz",
+   "nivel_severidad": "Medio",
+   "latitud": -35.0,
+   "longitud": -65.5,
+   "timestamp_ms": 1792882855451,
+   "es_propio": false,
+   "distancia_km": null
+  },
+  {
+   "id": 93,
+   "plaga_id": 9,
+   "plaga_nombre": "Oruga de las leguminosas",
+   "cultivo_nombre": "Soja",
+   "nivel_severidad": "Bajo",
+   "latitud": -35.5,
+   "longitud": -59.8,
+   "timestamp_ms": 1792551600000,
+   "es_propio": false,
+   "distancia_km": null
+  }
+ ],
+ "total": 29,
+ "cultivos": [
+  "Maíz",
+  "Soja",
+  "Trigo"
+ ]
+}

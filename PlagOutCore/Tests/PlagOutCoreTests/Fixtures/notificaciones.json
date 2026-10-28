@@ -1,0 +1,20 @@
+[
+ {
+  "id": 801,
+  "titulo": "Riesgo alto de Oruga cogollera",
+  "mensaje": "El ciclo llegó al 80 % del umbral.",
+  "leido": false,
+  "tipo": "ALERTA_GDD_CICLO",
+  "fecha_envio": "2026-10-26T09:05:12.483912+00:00",
+  "entidad_id": 12
+ },
+ {
+  "id": 802,
+  "titulo": "Reporte cercano",
+  "mensaje": "Hay un reporte de Chinche a 8 km.",
+  "leido": false,
+  "tipo": "REPORTE_CERCANO",
+  "fecha_envio": "2026-10-25T21:40:00",
+  "entidad_id": null
+ }
+]

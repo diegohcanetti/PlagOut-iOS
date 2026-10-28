@@ -1,0 +1,13 @@
+{
+ "detail": "invalid_request",
+ "errors": [
+  {
+   "field": "body.fecha_siembra",
+   "code": "fecha_siembra_future"
+  },
+  {
+   "field": "body.area_hectareas",
+   "code": "greater_than"
+  }
+ ]
+}

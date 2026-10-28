@@ -1,0 +1,17 @@
+[
+ {
+  "id": 3,
+  "nombre": "Maíz",
+  "nombre_cientifico": "Zea mays"
+ },
+ {
+  "id": 2,
+  "nombre": "Soja",
+  "nombre_cientifico": "Glycine max"
+ },
+ {
+  "id": 1,
+  "nombre": "Trigo",
+  "nombre_cientifico": "Triticum aestivum"
+ }
+]

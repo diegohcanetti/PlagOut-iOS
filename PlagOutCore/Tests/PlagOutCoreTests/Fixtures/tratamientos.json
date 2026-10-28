@@ -1,0 +1,38 @@
+[
+ {
+  "id": 7,
+  "monitoreo_id": 12,
+  "fecha_aplicacion": "2026-10-01",
+  "producto": "Clorantraniliprole",
+  "unidad_conteo": "por_metro_lineal",
+  "conteo_antes": 12.0,
+  "fecha_conteo_antes": "2026-09-30",
+  "conteo_despues": 3.0,
+  "fecha_conteo_despues": "2026-10-08",
+  "testigo_antes": 10.0,
+  "testigo_despues": 9.0,
+  "metodo": "henderson_tilton",
+  "reduccion_observada_pct": 75.0,
+  "eficacia_pct": 72.2,
+  "sin_calculo": null,
+  "cita": "Henderson & Tilton (1955), doi:10.1093/jee/48.2.157"
+ },
+ {
+  "id": 8,
+  "monitoreo_id": 12,
+  "fecha_aplicacion": "2026-10-01",
+  "producto": "Clorantraniliprole",
+  "unidad_conteo": "por_metro_lineal",
+  "conteo_antes": 12.0,
+  "fecha_conteo_antes": "2026-09-30",
+  "conteo_despues": null,
+  "fecha_conteo_despues": null,
+  "testigo_antes": null,
+  "testigo_despues": null,
+  "metodo": null,
+  "reduccion_observada_pct": null,
+  "eficacia_pct": null,
+  "sin_calculo": "falta_conteo_despues",
+  "cita": "Henderson & Tilton (1955), doi:10.1093/jee/48.2.157"
+ }
+]
