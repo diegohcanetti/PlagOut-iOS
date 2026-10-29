@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0FB668F158CE5E4CE2F1D9 /* TablerosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4329913E19D941768A27C20 /* TablerosView.swift */; };
 		0EE0EB0B20270A3B10F1D6BB /* MapaReportesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993AA6545DCBAFB510C34337 /* MapaReportesView.swift */; };
 		11AEE20479F245328FA2CA7C /* CiclosSeccion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9174B3A55FFDA5D7B5D5B518 /* CiclosSeccion.swift */; };
 		12DB8C81CCA8F370F363F492 /* Recorrido.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD90DB373B9E6224BB1445 /* Recorrido.swift */; };
@@ -72,6 +73,7 @@
 		9174B3A55FFDA5D7B5D5B518 /* CiclosSeccion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiclosSeccion.swift; sourceTree = "<group>"; };
 		993AA6545DCBAFB510C34337 /* MapaReportesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaReportesView.swift; sourceTree = "<group>"; };
 		9B670E45A76A0036651E8ABB /* MonitoreosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoreosView.swift; sourceTree = "<group>"; };
+		A4329913E19D941768A27C20 /* TablerosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TablerosView.swift; sourceTree = "<group>"; };
 		A5CD90DB373B9E6224BB1445 /* Recorrido.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorrido.swift; sourceTree = "<group>"; };
 		B053F0791F1A8A1EF362CE68 /* PestanasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PestanasView.swift; sourceTree = "<group>"; };
 		B27129022544AD744BBF04C7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		1B7CE65375927A455E834DFE /* Tableros */ = {
+			isa = PBXGroup;
+			children = (
+				A4329913E19D941768A27C20 /* TablerosView.swift */,
+			);
+			path = Tableros;
+			sourceTree = "<group>";
+		};
 		3912B994D57D55228BE70F6B /* Cuenta */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +154,7 @@
 				4584C2282901EC1B5B5E7512 /* Perfil */,
 				DD0154A1900728B463406600 /* Recursos */,
 				CA84A255BAFE25ACA33FA61E /* Reportes */,
+				1B7CE65375927A455E834DFE /* Tableros */,
 				7E57C6340424A999FE577AB4 /* Terrenos */,
 			);
 			path = PlagOut;
@@ -369,6 +380,7 @@
 				91521F1CAC682C88D85840E9 /* RegistroView.swift in Sources */,
 				FA340E06DF393E7946373C2C /* ReporteDetalleView.swift in Sources */,
 				4C12DF94E9175BB0BDA17409 /* ReportesView.swift in Sources */,
+				0C0FB668F158CE5E4CE2F1D9 /* TablerosView.swift in Sources */,
 				96C1015E1A9973888EE1D0F7 /* Tema.swift in Sources */,
 				F5AB69DC29C1B745EC074A97 /* TerrenoDetalleView.swift in Sources */,
 				38224E511DAC053F92186C9B /* TerrenosView.swift in Sources */,

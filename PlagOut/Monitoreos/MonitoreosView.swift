@@ -39,7 +39,7 @@ struct MonitoreosView: View {
                 }
                 .pickerStyle(.segmented)
 
-                if datos.cargando {
+                if datos.cargando || (!datos.cargado && datos.error == nil) {
                     ProgressView().padding(40)
                 } else if let error = datos.error, !datos.cargado {
                     EstadoVacio(icono: "wifi.exclamationmark", titulo: "No se pudieron cargar los monitoreos", detalle: error,

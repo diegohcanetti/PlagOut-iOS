@@ -16,8 +16,22 @@ final class DatosCampo {
     var cargado = false
     var error: String?
 
-    /// Trae todo en paralelo. Los catálogos se piden una sola vez por sesión.
+    private var enCurso: Task<Void, Never>?
+
+    /// Trae todo en paralelo. Si ya hay una carga en curso, espera esa: dos pantallas pueden
+    /// pedirla a la vez. Corre en su propia tarea para que no la corte el cambio de pestaña.
     func cargar(_ api: PlagOutAPI) async {
+        if let enCurso {
+            await enCurso.value
+            return
+        }
+        let tarea = Task { await traer(api) }
+        enCurso = tarea
+        await tarea.value
+        enCurso = nil
+    }
+
+    private func traer(_ api: PlagOutAPI) async {
         cargando = !cargado
         defer { cargando = false }
         do {

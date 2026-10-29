@@ -171,3 +171,26 @@ struct ReglasReporteTests {
         #expect(ReglasReporte.zoom(anchoEnGrados: 0.7) == 9)
     }
 }
+
+struct TablerosTests {
+    @Test func campaniasYSemaforo() throws {
+        let monitoreos = try decodificar(Pagina<Monitoreo>.self, "monitoreos").items
+        let terrenos = try decodificar(Pagina<Terreno>.self, "terrenos").items
+        #expect(Tableros.campania(de: DiaCalendario(anio: 2026, mes: 7, dia: 1)) == "2026/2027")
+        #expect(Tableros.campania(de: DiaCalendario(anio: 2026, mes: 6, dia: 30)) == "2025/2026")
+        let campanias = Tableros.campanias(monitoreos, terrenos: terrenos)
+        #expect(campanias.map(\.nombre) == ["2026/2027"])
+        #expect(campanias[0].monitoreos == 2)
+        #expect(campanias[0].hectareas == 42.5)
+        // El que espera el biofix no cuenta; el otro ya eclosionó (nivel 2).
+        #expect(campanias[0].riesgoAlto == 1)
+        #expect(campanias[0].riesgoBajo + campanias[0].riesgoModerado == 0)
+        let semaforo = Tableros.semaforo(monitoreos, terrenos: terrenos)
+        #expect(semaforo.lotes[.eclosionada] == 1)
+        #expect(semaforo.hectareas[.eclosionada] == 42.5)
+        #expect(semaforo.lotesSinMonitoreo == 0)
+        let lotes = Tableros.lotesPorEtapa(monitoreos)
+        #expect(lotes.map(\.monitoreoId) == [12])
+        #expect(lotes[0].etapa == .eclosionada)
+    }
+}
