@@ -19,7 +19,7 @@ public struct PlagOutAPI: Sendable {
     }
 
     public func crearTerreno(_ terreno: NuevoTerreno) async throws(ErrorBackend) -> Terreno {
-        try await cliente.pedir(Solicitud(.post, "/terrenos", cuerpo: cuerpo(terreno)), como: TerrenoCreado.self).comoTerreno
+        try await cliente.pedir(Solicitud(.post, "/terrenos", cuerpo: cuerpo(terreno)), como: TerrenoCreado.self, porCodigo: Errores.altaTerreno).comoTerreno
     }
 
     public func actualizarTerreno(id: Int, _ cambios: CambiosTerreno) async throws(ErrorBackend) -> Terreno {
@@ -35,7 +35,10 @@ public struct PlagOutAPI: Sendable {
     }
 
     public func crearPlantacion(_ plantacion: NuevaPlantacion) async throws(ErrorBackend) -> PlantacionCreada {
-        try await cliente.pedir(Solicitud(.post, "/plantaciones", cuerpo: cuerpo(plantacion)))
+        try await cliente.pedir(
+            Solicitud(.post, "/plantaciones", cuerpo: cuerpo(plantacion)),
+            porDetalle: Errores.altaPlantacion, porCodigo: Errores.altaPlantacionPorCodigo
+        )
     }
 
     public func actualizarPlantacion(id: Int, _ cambios: CambiosPlantacion) async throws(ErrorBackend) -> Plantacion {
@@ -60,8 +63,11 @@ public struct PlagOutAPI: Sendable {
         try await cliente.pedir(Solicitud(.get, "/monitoreos/\(id)"))
     }
 
-    public func crearMonitoreo(_ monitoreo: NuevoMonitoreo, porDetalle: [String: String] = [:]) async throws(ErrorBackend) -> Monitoreo {
-        try await cliente.pedir(Solicitud(.post, "/monitoreos", cuerpo: cuerpo(monitoreo)), porDetalle: porDetalle)
+    public func crearMonitoreo(_ monitoreo: NuevoMonitoreo) async throws(ErrorBackend) -> Monitoreo {
+        try await cliente.pedir(
+            Solicitud(.post, "/monitoreos", cuerpo: cuerpo(monitoreo)),
+            porDetalle: Errores.altaMonitoreo, porCodigo: Errores.altaMonitoreoPorCodigo
+        )
     }
 
     public func actualizarMonitoreo(id: Int, _ cambios: CambiosMonitoreo, porCodigo: [Int: String] = [:]) async throws(ErrorBackend) -> Monitoreo {

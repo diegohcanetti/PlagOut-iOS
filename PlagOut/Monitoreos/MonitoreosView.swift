@@ -1,25 +1,16 @@
 import PlagOutCore
 import SwiftUI
 
-@MainActor
-@Observable
-final class MonitoreosModelo {
-    enum Filtro: String, CaseIterable, Identifiable {
-        case activos = "Activos"
-        case alerta = "En alerta"
-        case finalizados = "Finalizados"
-        case todos = "Todos"
-        var id: String { rawValue }
-    }
+enum FiltroMonitoreos: String, CaseIterable, Identifiable {
+    case activos = "Activos"
+    case alerta = "En alerta"
+    case finalizados = "Finalizados"
+    case todos = "Todos"
+    var id: String { rawValue }
 
-    var monitoreos: [Monitoreo] = []
-    var cargando = false
-    var error: String?
-    var filtro: Filtro = .activos
-
-    var filtrados: [Monitoreo] {
+    func aplicar(_ monitoreos: [Monitoreo]) -> [Monitoreo] {
         let lista: [Monitoreo]
-        switch filtro {
+        switch self {
         case .activos: lista = monitoreos.filter(\.estaActivo)
         case .alerta: lista = monitoreos.filter { $0.estaActivo && $0.ciclosEnAlerta > 0 }
         case .finalizados: lista = monitoreos.filter { !$0.estaActivo }
@@ -31,43 +22,36 @@ final class MonitoreosModelo {
                 > ($1.estaActivo ? 1 : 0, $1.nivelAlertaEfectivo, $1.cicloVigente?.progreso ?? -1, $1.id)
         }
     }
-
-    func cargar(_ api: PlagOutAPI) async {
-        cargando = monitoreos.isEmpty
-        defer { cargando = false }
-        do {
-            monitoreos = try await api.monitoreos()
-            error = nil
-        } catch {
-            self.error = error.mensaje
-        }
-    }
 }
 
 struct MonitoreosView: View {
     @Environment(AppEstado.self) private var estado
-    @State private var modelo = MonitoreosModelo()
+    @State private var filtro: FiltroMonitoreos = .activos
+    @State private var creando = false
 
     var body: some View {
+        let datos = estado.datos
+        let filtrados = filtro.aplicar(datos.monitoreos)
         ScrollView {
             LazyVStack(spacing: 12) {
-                Picker("Filtro", selection: $modelo.filtro) {
-                    ForEach(MonitoreosModelo.Filtro.allCases) { Text($0.rawValue).tag($0) }
+                Picker("Filtro", selection: $filtro) {
+                    ForEach(FiltroMonitoreos.allCases) { Text($0.rawValue).tag($0) }
                 }
                 .pickerStyle(.segmented)
 
-                if modelo.cargando {
+                if datos.cargando {
                     ProgressView().padding(40)
-                } else if let error = modelo.error, modelo.monitoreos.isEmpty {
+                } else if let error = datos.error, !datos.cargado {
                     EstadoVacio(icono: "wifi.exclamationmark", titulo: "No se pudieron cargar los monitoreos", detalle: error,
-                                boton: "Reintentar", accion: { Task { await modelo.cargar(estado.api) } })
-                } else if modelo.monitoreos.isEmpty {
+                                boton: "Reintentar", accion: { Task { await datos.cargar(estado.api) } })
+                } else if datos.monitoreos.isEmpty {
                     EstadoVacio(icono: "leaf", titulo: "Sin monitoreos activos",
-                                detalle: "Creá un monitoreo para seguir el riesgo de plagas en tus cultivos.")
-                } else if modelo.filtrados.isEmpty {
+                                detalle: "Creá un monitoreo para seguir el riesgo de plagas en tus cultivos.",
+                                boton: "Nuevo Monitoreo", accion: { creando = true })
+                } else if filtrados.isEmpty {
                     EstadoVacio(icono: "line.3.horizontal.decrease.circle", titulo: "No hay monitoreos en este estado.")
                 } else {
-                    ForEach(modelo.filtrados) { monitoreo in
+                    ForEach(filtrados) { monitoreo in
                         NavigationLink(value: Destino.monitoreo(monitoreo.id)) {
                             TarjetaMonitoreo(monitoreo: monitoreo)
                         }
@@ -79,8 +63,14 @@ struct MonitoreosView: View {
         }
         .fondoCampo()
         .navigationTitle("Mis Monitoreos")
-        .refreshable { await modelo.cargar(estado.api) }
-        .task { await modelo.cargar(estado.api) }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button("Nuevo Monitoreo", systemImage: "plus") { creando = true }
+            }
+        }
+        .sheet(isPresented: $creando) { NuevoMonitoreoView() }
+        .refreshable { await datos.cargar(estado.api) }
+        .task { await datos.cargar(estado.api) }
     }
 }
 
