@@ -63,6 +63,7 @@ struct MonitoreosView: View {
         }
         .fondoCampo()
         .navigationTitle("Mis Monitoreos")
+        .barraSuperior()
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Nuevo Monitoreo", systemImage: "plus") { creando = true }

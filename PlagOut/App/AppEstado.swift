@@ -34,6 +34,7 @@ final class AppEstado {
     let sesion: SesionSupabase
     let api: PlagOutAPI
     let datos = DatosCampo()
+    let notificaciones = NotificacionesModelo()
 
     init(configuracion: Configuracion = .actual) {
         let sesion = SesionSupabase(supabaseURL: configuracion.supabase, clavePublicable: configuracion.clavePublicable)
@@ -139,6 +140,7 @@ final class AppEstado {
     func cerrarSesion(aviso texto: String? = nil) async {
         await sesion.cerrarSesion()
         datos.vaciar()
+        notificaciones.lista = []
         fase = .afuera
         if let texto { avisar(texto) }
     }

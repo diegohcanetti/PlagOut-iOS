@@ -6,6 +6,7 @@ struct PestanasView: View {
     enum Pestanas: Hashable { case monitoreos, terrenos, reportes, perfil }
 
     @Environment(AppEstado.self) private var estado
+    @Environment(\.scenePhase) private var fase
     @State private var actual: Pestanas = .monitoreos
     @State private var caminos: [Pestanas: NavigationPath] = [:]
 
@@ -23,6 +24,11 @@ struct PestanasView: View {
             Pestana(camino: camino(.perfil)) { PendienteView(titulo: "Perfil") }
                 .tabItem { Label("Perfil", systemImage: "person.crop.circle") }
                 .tag(Pestanas.perfil)
+        }
+        // Sin push (Apple las exige pagas): los avisos se leen al entrar y al volver a la app.
+        .task { await estado.notificaciones.cargar(estado.api) }
+        .onChange(of: fase) { _, nueva in
+            if nueva == .active { Task { await estado.notificaciones.cargar(estado.api) } }
         }
         .onChange(of: estado.destinoPendiente, initial: true) { _, destino in
             guard let destino else { return }
@@ -62,6 +68,7 @@ struct Pestana<Contenido: View>: View {
                     switch destino {
                     case .monitoreo(let id): MonitoreoDetalleView(id: id)
                     case .plantacion(let id): PlantacionDetalleView(id: id)
+                    case .prediccion(let id): PrediccionDetalleView(id: id)
                     default: PendienteView(titulo: "Próximamente")
                     }
                 }

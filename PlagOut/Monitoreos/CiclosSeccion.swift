@@ -155,6 +155,9 @@ struct BiofixSheet: View {
     @Environment(AppEstado.self) private var estado
     @Environment(\.dismiss) private var cerrar
     let monitoreo: Monitoreo
+    /// Otro destino para el biofix (por ejemplo, confirmar una predicción). Devuelve el aviso de
+    /// éxito. Sin él se registra en el monitoreo.
+    var enviar: ((SolicitudBiofix) async throws(ErrorBackend) -> String)?
     let alTerminar: () async -> Void
 
     @State private var fecha = DiaCalendario.hoy().fecha
@@ -242,8 +245,14 @@ struct BiofixSheet: View {
         enviando = true
         defer { enviando = false }
         do {
-            let resultado = try await estado.api.registrarBiofix(monitoreoId: monitoreo.id, pedido, porDetalle: Errores.biofix)
-            estado.avisar(resultado.cicloCreado ? "Biofix registrado: arrancó un ciclo nuevo." : "Presencia registrada en el ciclo.", esError: false)
+            let aviso: String
+            if let enviar {
+                aviso = try await enviar(pedido)
+            } else {
+                let resultado = try await estado.api.registrarBiofix(monitoreoId: monitoreo.id, pedido, porDetalle: Errores.biofix)
+                aviso = resultado.cicloCreado ? "Biofix registrado: arrancó un ciclo nuevo." : "Presencia registrada en el ciclo."
+            }
+            estado.avisar(aviso, esError: false)
             await alTerminar()
             cerrar()
         } catch {

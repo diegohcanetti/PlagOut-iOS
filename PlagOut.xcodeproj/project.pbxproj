@@ -16,13 +16,16 @@
 		499B26EE41B1E1EBC272CD81 /* PlagOutCore in Frameworks */ = {isa = PBXBuildFile; productRef = C7FBEB2B1C47927DBE640899 /* PlagOutCore */; };
 		588BD722E5FB9BEC3006BECE /* TratamientosSeccion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437E8C0015E6A1DB2DCDB5F1 /* TratamientosSeccion.swift */; };
 		5A04886846D7F5A075C25095 /* Configuracion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F31385F83DBA62D1162D0 /* Configuracion.swift */; };
+		5B18F0B820240C8D05B317DE /* PrediccionDetalleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376F6D87244250775E93A991 /* PrediccionDetalleView.swift */; };
 		7B41C422ACA00C6525EB009F /* AppEstado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADA491EE191E92B7BCD42F4 /* AppEstado.swift */; };
 		91521F1CAC682C88D85840E9 /* RegistroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F38C231CB41B9479B934D6 /* RegistroView.swift */; };
 		96C1015E1A9973888EE1D0F7 /* Tema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F5216F7086048F6463062 /* Tema.swift */; };
 		AA9F908E3C2296CB6E3C7574 /* MonitoreoDetalleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C903517D4CDF1161B5CA656 /* MonitoreoDetalleView.swift */; };
 		AFC214521958EDAC2D15AFD2 /* PlagOutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EC5A803269504FDDF1DC8E /* PlagOutApp.swift */; };
 		BE167E80454EFF6C29D33943 /* MonitoreosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B670E45A76A0036651E8ABB /* MonitoreosView.swift */; };
+		D2A2DD8AC6D8411D64F64643 /* AyudaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0918063FA4C05C8EF61A7E /* AyudaView.swift */; };
 		DAE6FD974EC53B706854F995 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27129022544AD744BBF04C7 /* LoginView.swift */; };
+		DEFFCB86EE36518C7B4D5C1C /* Notificaciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC22AB0255A07040EB610A /* Notificaciones.swift */; };
 		E42C7E04F31CD6CCA0D3C49C /* DatosCampo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242A4EBB7BBB01F4364F4169 /* DatosCampo.swift */; };
 		E5A6CB120E7A51E3EEDB9C79 /* RecuperarPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210443D295C860DD6FC316C /* RecuperarPasswordView.swift */; };
 		EF5C16C670E576BC006A933C /* PlantacionDetalleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C582C3242194407987A3ADF9 /* PlantacionDetalleView.swift */; };
@@ -49,9 +52,11 @@
 		21FC5C5CF5EF89A532641E73 /* MonitoreoDetalleModelo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoreoDetalleModelo.swift; sourceTree = "<group>"; };
 		242A4EBB7BBB01F4364F4169 /* DatosCampo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosCampo.swift; sourceTree = "<group>"; };
 		24F5E85F9FE3DEF0B23DC129 /* TerrenosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrenosView.swift; sourceTree = "<group>"; };
+		376F6D87244250775E93A991 /* PrediccionDetalleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrediccionDetalleView.swift; sourceTree = "<group>"; };
 		437E8C0015E6A1DB2DCDB5F1 /* TratamientosSeccion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TratamientosSeccion.swift; sourceTree = "<group>"; };
 		4901F1B9363D0DD007D35077 /* PlagOutUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PlagOutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A544520D8EDC72423C1238 /* Componentes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Componentes.swift; sourceTree = "<group>"; };
+		6E0918063FA4C05C8EF61A7E /* AyudaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyudaView.swift; sourceTree = "<group>"; };
 		72AC2EA755C83CF33851AC0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		75F38C231CB41B9479B934D6 /* RegistroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroView.swift; sourceTree = "<group>"; };
 		7ADA491EE191E92B7BCD42F4 /* AppEstado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEstado.swift; sourceTree = "<group>"; };
@@ -69,6 +74,7 @@
 		C7AF69B538A4E3E6B7D678D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8FBBC994EAC4E2F0898B0FB /* UbicacionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbicacionView.swift; sourceTree = "<group>"; };
 		D8EA81D1B296C6CC6840BFA0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		E7BC22AB0255A07040EB610A /* Notificaciones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notificaciones.swift; sourceTree = "<group>"; };
 		F22C4F88243A181B37385348 /* TerrenoDetalleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrenoDetalleView.swift; sourceTree = "<group>"; };
 		F8EA64026CAA68FA79DE6541 /* PlagOut.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PlagOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -175,6 +181,7 @@
 				21FC5C5CF5EF89A532641E73 /* MonitoreoDetalleModelo.swift */,
 				7C903517D4CDF1161B5CA656 /* MonitoreoDetalleView.swift */,
 				9B670E45A76A0036651E8ABB /* MonitoreosView.swift */,
+				376F6D87244250775E93A991 /* PrediccionDetalleView.swift */,
 				437E8C0015E6A1DB2DCDB5F1 /* TratamientosSeccion.swift */,
 			);
 			path = Monitoreos;
@@ -183,6 +190,8 @@
 		B6D3C62A23398538F9422E4D /* Inicio */ = {
 			isa = PBXGroup;
 			children = (
+				6E0918063FA4C05C8EF61A7E /* AyudaView.swift */,
+				E7BC22AB0255A07040EB610A /* Notificaciones.swift */,
 				B053F0791F1A8A1EF362CE68 /* PestanasView.swift */,
 			);
 			path = Inicio;
@@ -307,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B41C422ACA00C6525EB009F /* AppEstado.swift in Sources */,
+				D2A2DD8AC6D8411D64F64643 /* AyudaView.swift in Sources */,
 				11AEE20479F245328FA2CA7C /* CiclosSeccion.swift in Sources */,
 				3742A639A7F314747F9C8A08 /* Componentes.swift in Sources */,
 				5A04886846D7F5A075C25095 /* Configuracion.swift in Sources */,
@@ -316,9 +326,11 @@
 				AA9F908E3C2296CB6E3C7574 /* MonitoreoDetalleView.swift in Sources */,
 				BE167E80454EFF6C29D33943 /* MonitoreosView.swift in Sources */,
 				2D022EBFA0B95E81EBCC67D4 /* Niveles.swift in Sources */,
+				DEFFCB86EE36518C7B4D5C1C /* Notificaciones.swift in Sources */,
 				F8043C442B96326558C17FF3 /* PestanasView.swift in Sources */,
 				AFC214521958EDAC2D15AFD2 /* PlagOutApp.swift in Sources */,
 				EF5C16C670E576BC006A933C /* PlantacionDetalleView.swift in Sources */,
+				5B18F0B820240C8D05B317DE /* PrediccionDetalleView.swift in Sources */,
 				E5A6CB120E7A51E3EEDB9C79 /* RecuperarPasswordView.swift in Sources */,
 				91521F1CAC682C88D85840E9 /* RegistroView.swift in Sources */,
 				96C1015E1A9973888EE1D0F7 /* Tema.swift in Sources */,
