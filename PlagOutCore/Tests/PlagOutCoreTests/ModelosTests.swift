@@ -112,3 +112,20 @@ struct ModelosTests {
         #expect(DiaCalendario("hoy") == nil)
     }
 }
+
+struct CiclosTests {
+    @Test func diasAlObjetivoYNumeracion() throws {
+        let ciclo = try decodificar(CicloGDD.self, "ciclo")
+        // 95 GDD del huevo en 21 días (5/10 → 26/10): faltan 25 a ~4,52 por día → 6 días.
+        #expect(ciclo.diasEstimados(objetivoMonitoreo: nil) == 6)
+        #expect(!ciclo.eclosiono)
+        let monitoreo = try decodificar(Pagina<Monitoreo>.self, "monitoreos").items[0]
+        let ciclos = try #require(monitoreo.ciclos)
+        #expect(ciclos.numeros == [30: 1, 41: 2])
+        #expect(ciclos.porProgreso.map(\.id) == [30, 41])
+        let archivado = try #require(ciclos.first { $0.id == 30 })
+        #expect(archivado.eclosiono)
+        #expect(archivado.diasEstimados(objetivoMonitoreo: nil) == nil)
+        #expect(archivado.actualizacionVisible.description == "2026-09-14")
+    }
+}

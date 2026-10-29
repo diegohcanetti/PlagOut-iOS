@@ -54,3 +54,42 @@ extension CicloGDD {
         return acumuladoHuevo
     }
 }
+
+extension CicloGDD {
+    /// Eclosionó: tiene fecha de eclosión o llegó al 100 %.
+    public var eclosiono: Bool { fechaEclosion != nil || progreso >= 100 }
+
+    /// La fecha de la última actualización que se muestra: después de la eclosión, la eclosión.
+    public var actualizacionVisible: DiaCalendario {
+        if let eclosion = fechaEclosion, fechaActualizacion > eclosion { return eclosion }
+        return fechaActualizacion
+    }
+
+    /// GDD por día desde el biofix (el promedio real), o el del último día si no hay historia.
+    var ritmoDiario: Double {
+        let dias = fechaBiofix.dias(hasta: fechaActualizacion)
+        return dias > 0 ? acumuladoHuevo / Double(dias) : gddDiario
+    }
+
+    /// Días que faltan para el objetivo al ritmo actual; nil si ya llegó o no se puede estimar.
+    public func diasEstimados(objetivoMonitoreo: Double?) -> Int? {
+        guard let objetivo = objetivo(delMonitoreo: objetivoMonitoreo) else { return nil }
+        let restante = objetivo - acumuladoHuevo
+        guard restante > 0, progreso < 100 else { return nil }
+        let ritmo = ritmoDiario
+        return ritmo > 0 ? Int((restante / ritmo).rounded(.up)) : nil
+    }
+}
+
+extension Array where Element == CicloGDD {
+    /// Número de cada ciclo por orden de biofix ("Ciclo 1", "Ciclo 2", …).
+    public var numeros: [Int: Int] {
+        let ordenados = sorted { ($0.fechaBiofix, $0.id) < ($1.fechaBiofix, $1.id) }
+        return Dictionary(uniqueKeysWithValues: ordenados.enumerated().map { ($1.id, $0 + 1) })
+    }
+
+    /// Los más avanzados primero.
+    public var porProgreso: [CicloGDD] {
+        sorted { ($0.progreso, -$0.id) > ($1.progreso, -$1.id) }
+    }
+}

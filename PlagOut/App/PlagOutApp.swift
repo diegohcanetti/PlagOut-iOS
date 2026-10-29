@@ -11,7 +11,15 @@ struct PlagOutApp: App {
                 .tint(Paleta.bosque)
                 .preferredColorScheme(.light)
                 .onOpenURL { estado.abrir($0) }
-                .task { await estado.arrancar() }
+                .task {
+                    await estado.arrancar()
+                    #if DEBUG
+                    // Solo en desarrollo: SIMCTL_CHILD_PLAGOUT_ABRIR=plagout://monitoreo/41 abre esa pantalla.
+                    if let link = ProcessInfo.processInfo.environment["PLAGOUT_ABRIR"], let url = URL(string: link) {
+                        estado.abrir(url)
+                    }
+                    #endif
+                }
         }
     }
 }

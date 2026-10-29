@@ -28,6 +28,8 @@ final class AppEstado {
     var fase: Fase = .cargando
     var recuperacion: Recuperacion?
     var aviso: Aviso?
+    /// Una pantalla a abrir desde afuera (un link o una notificación); la consume `PestanasView`.
+    var destinoPendiente: Destino?
 
     let sesion: SesionSupabase
     let api: PlagOutAPI
@@ -153,7 +155,18 @@ final class AppEstado {
 
     /// `plagout://reset-password#access_token=…` desde el mail de recuperación.
     func abrir(_ url: URL) {
-        guard url.scheme == "plagout", url.host == "reset-password" else { return }
+        guard url.scheme == "plagout" else { return }
+        // plagout://monitoreo/41, plagout://reporte/7, plagout://prediccion/3
+        if let id = Int(url.lastPathComponent) {
+            switch url.host {
+            case "monitoreo": destinoPendiente = .monitoreo(id)
+            case "reporte": destinoPendiente = .reporte(id)
+            case "prediccion": destinoPendiente = .prediccion(id)
+            default: break
+            }
+            return
+        }
+        guard url.host == "reset-password" else { return }
         recuperacion = .abriendo
         Task {
             do {
