@@ -130,4 +130,23 @@ final class Recorrido: XCTestCase {
         captura("c06-nuevo-terreno")
         app.buttons["Cancelar"].tap()
     }
+
+    func testNotificacionesYAyuda() {
+        esperar(app.navigationBars["Mis Monitoreos"])
+        app.buttons["Notificaciones"].tap()
+        esperar(app.navigationBars["Notificaciones"])
+        sleep(2)
+        captura("n01-notificaciones")
+        app.buttons["Listo"].tap()
+        app.buttons["Ayuda"].tap()
+        sleep(1)
+        captura("n02-ayuda")
+        app.buttons["Listo"].tap()
+    }
+
+    func testPrediccionInexistente() {
+        esperar(app.navigationBars["Alerta predictiva"])
+        sleep(3)
+        captura("n03-prediccion")
+    }
 }

@@ -38,6 +38,7 @@ struct TerrenosView: View {
         }
         .fondoCampo()
         .navigationTitle("Mis Terrenos")
+        .barraSuperior()
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Nuevo Terreno", systemImage: "plus") { creando = true }
