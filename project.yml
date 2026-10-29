@@ -28,8 +28,8 @@ targets:
     sources:
       - path: PlagOut
     configFiles:
-      Debug: Config.xcconfig
-      Release: Config.xcconfig
+      Debug: PlagOut/Recursos/Config.xcconfig
+      Release: PlagOut/Recursos/Config.xcconfig
     dependencies:
       - package: PlagOutCore
         product: PlagOutCore
