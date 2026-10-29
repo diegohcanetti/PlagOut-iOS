@@ -30,6 +30,7 @@
 		DAE6FD974EC53B706854F995 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27129022544AD744BBF04C7 /* LoginView.swift */; };
 		DEFFCB86EE36518C7B4D5C1C /* Notificaciones.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC22AB0255A07040EB610A /* Notificaciones.swift */; };
 		E42C7E04F31CD6CCA0D3C49C /* DatosCampo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242A4EBB7BBB01F4364F4169 /* DatosCampo.swift */; };
+		E4BDDAB1A8EA1CC8A04D7893 /* PerfilView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF483FB69B6BB76D05930F4 /* PerfilView.swift */; };
 		E5A6CB120E7A51E3EEDB9C79 /* RecuperarPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210443D295C860DD6FC316C /* RecuperarPasswordView.swift */; };
 		EF5C16C670E576BC006A933C /* PlantacionDetalleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C582C3242194407987A3ADF9 /* PlantacionDetalleView.swift */; };
 		F5472DCFACC1690A2037D3D9 /* PlagOutAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2A5F12BADA606F8D78A1D533 /* PlagOutAuth */; };
@@ -61,6 +62,7 @@
 		4901F1B9363D0DD007D35077 /* PlagOutUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PlagOutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A544520D8EDC72423C1238 /* Componentes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Componentes.swift; sourceTree = "<group>"; };
 		6E0918063FA4C05C8EF61A7E /* AyudaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AyudaView.swift; sourceTree = "<group>"; };
+		6FF483FB69B6BB76D05930F4 /* PerfilView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilView.swift; sourceTree = "<group>"; };
 		72AC2EA755C83CF33851AC0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		75F38C231CB41B9479B934D6 /* RegistroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroView.swift; sourceTree = "<group>"; };
 		7ADA491EE191E92B7BCD42F4 /* AppEstado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEstado.swift; sourceTree = "<group>"; };
@@ -139,11 +141,20 @@
 				3912B994D57D55228BE70F6B /* Cuenta */,
 				B6D3C62A23398538F9422E4D /* Inicio */,
 				91C899E1BCD9A58F672F14EC /* Monitoreos */,
+				4584C2282901EC1B5B5E7512 /* Perfil */,
 				DD0154A1900728B463406600 /* Recursos */,
 				CA84A255BAFE25ACA33FA61E /* Reportes */,
 				7E57C6340424A999FE577AB4 /* Terrenos */,
 			);
 			path = PlagOut;
+			sourceTree = "<group>";
+		};
+		4584C2282901EC1B5B5E7512 /* Perfil */ = {
+			isa = PBXGroup;
+			children = (
+				6FF483FB69B6BB76D05930F4 /* PerfilView.swift */,
+			);
+			path = Perfil;
 			sourceTree = "<group>";
 		};
 		50F821CB50A476ABD3CE436F /* Packages */ = {
@@ -349,6 +360,7 @@
 				2D022EBFA0B95E81EBCC67D4 /* Niveles.swift in Sources */,
 				DEFFCB86EE36518C7B4D5C1C /* Notificaciones.swift in Sources */,
 				44C640C94A76D25B68636668 /* NuevoReporteView.swift in Sources */,
+				E4BDDAB1A8EA1CC8A04D7893 /* PerfilView.swift in Sources */,
 				F8043C442B96326558C17FF3 /* PestanasView.swift in Sources */,
 				AFC214521958EDAC2D15AFD2 /* PlagOutApp.swift in Sources */,
 				EF5C16C670E576BC006A933C /* PlantacionDetalleView.swift in Sources */,

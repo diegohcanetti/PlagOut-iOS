@@ -199,4 +199,26 @@ final class Recorrido: XCTestCase {
         sleep(2)
         captura("p07-alerta-borrada")
     }
+
+    func testPerfilSinGuardar() {
+        esperar(app.navigationBars["Mis Monitoreos"])
+        app.tabBars.buttons["Perfil"].tap()
+        esperar(app.navigationBars["Mi perfil"])
+        sleep(2)
+        captura("u01-perfil")
+        app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Rango de alerta")).firstMatch.tap()
+        sleep(1)
+        captura("u02-radio")
+        app.buttons["Cancelar"].tap()
+        app.buttons["Editar perfil"].tap()
+        esperar(app.navigationBars["Editar perfil"])
+        sleep(1)
+        captura("u03-editar")
+        app.buttons["Cancelar"].tap()
+        app.swipeUp()
+        app.buttons["Eliminar cuenta"].tap()
+        sleep(1)
+        captura("u04-eliminar")
+        app.buttons["Cancelar"].tap()
+    }
 }
