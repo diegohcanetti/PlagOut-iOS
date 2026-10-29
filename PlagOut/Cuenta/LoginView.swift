@@ -60,6 +60,18 @@ struct LoginView: View {
         .scrollDismissesKeyboard(.interactively)
         .fondoCampo()
         .toolbar(.hidden, for: .navigationBar)
+        #if DEBUG
+        // Solo en desarrollo: `simctl launch` con SIMCTL_CHILD_PLAGOUT_DEMO_EMAIL/_PASSWORD entra
+        // solo, para probar en el simulador sin tipear.
+        .task {
+            let entorno = ProcessInfo.processInfo.environment
+            if let demo = entorno["PLAGOUT_DEMO_EMAIL"], let clave = entorno["PLAGOUT_DEMO_PASSWORD"], email.isEmpty {
+                email = demo
+                password = clave
+                await entrar()
+            }
+        }
+        #endif
     }
 
     private func entrar() async {

@@ -160,7 +160,7 @@ final class AppEstado {
                 try await sesion.abrirEnlaceDeRecuperacion(url)
                 recuperacion = .nuevaPassword
             } catch {
-                recuperacion = .enlaceInvalido(error.mensaje)
+                recuperacion = .enlaceInvalido((error as? ErrorDeCuenta)?.mensaje ?? MensajesAuth.enlaceVencido)
             }
         }
     }
