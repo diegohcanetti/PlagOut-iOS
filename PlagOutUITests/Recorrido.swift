@@ -26,6 +26,11 @@ final class Recorrido: XCTestCase {
         try? datos.write(to: URL(fileURLWithPath: carpeta).appendingPathComponent("\(nombre).png"))
     }
 
+    /// Un selector de formulario: su botón se llama "Etiqueta, valor actual".
+    func selector(_ etiqueta: String) -> XCUIElement {
+        app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", etiqueta + ",")).firstMatch
+    }
+
     func esperar(_ elemento: XCUIElement, _ segundos: TimeInterval = 20) {
         XCTAssertTrue(elemento.waitForExistence(timeout: segundos), "No apareció \(elemento)")
     }
@@ -148,5 +153,50 @@ final class Recorrido: XCTestCase {
         esperar(app.navigationBars["Alerta predictiva"])
         sleep(3)
         captura("n03-prediccion")
+    }
+
+    func testReportesYMapa() {
+        esperar(app.navigationBars["Mis Monitoreos"])
+        app.tabBars.buttons["Reportes"].tap()
+        esperar(app.navigationBars["Alertas de plagas"])
+        sleep(2)
+        captura("p01-mis-alertas")
+        app.buttons["Comunidad"].tap()
+        sleep(3)
+        captura("p02-comunidad")
+        app.buttons["Mapa de alertas"].tap()
+        esperar(app.navigationBars["Mapa de alertas"])
+        sleep(5)
+        captura("p03-mapa")
+    }
+
+    /// Escribe en producción: envía una alerta de prueba y la elimina.
+    func testAlertaSeCreaYSeBorra() {
+        esperar(app.navigationBars["Mis Monitoreos"])
+        app.tabBars.buttons["Reportes"].tap()
+        esperar(app.navigationBars["Alertas de plagas"])
+        app.buttons["Nueva Alerta"].firstMatch.tap()
+        esperar(app.navigationBars["Nueva Alerta"])
+        selector("Terreno").tap()
+        app.buttons["Phase 6 provenance smoke"].tap()
+        sleep(1)
+        selector("Plaga").tap()
+        app.buttons["Barrenador del tallo"].tap()
+        selector("Etapa").tap()
+        app.buttons["Adulto"].tap()
+        captura("p04-nueva-alerta")
+        app.buttons["Enviar"].tap()
+        esperar(app.navigationBars["Alertas de plagas"])
+        sleep(2)
+        captura("p05-alerta-enviada")
+        app.staticTexts["Barrenador del tallo"].firstMatch.tap()
+        esperar(app.navigationBars["Detalle de Alerta"])
+        sleep(2)
+        captura("p06-detalle-alerta")
+        app.buttons["Eliminar alerta"].tap()
+        app.buttons["Eliminar"].firstMatch.tap()
+        esperar(app.navigationBars["Alertas de plagas"])
+        sleep(2)
+        captura("p07-alerta-borrada")
     }
 }

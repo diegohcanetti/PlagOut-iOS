@@ -18,7 +18,7 @@ struct PestanasView: View {
             Pestana(camino: camino(.terrenos)) { TerrenosView() }
                 .tabItem { Label("Terrenos", systemImage: "map") }
                 .tag(Pestanas.terrenos)
-            Pestana(camino: camino(.reportes)) { PendienteView(titulo: "Reportes") }
+            Pestana(camino: camino(.reportes)) { ReportesView() }
                 .tabItem { Label("Reportes", systemImage: "ant") }
                 .tag(Pestanas.reportes)
             Pestana(camino: camino(.perfil)) { PendienteView(titulo: "Perfil") }
@@ -69,12 +69,14 @@ struct Pestana<Contenido: View>: View {
                     case .monitoreo(let id): MonitoreoDetalleView(id: id)
                     case .plantacion(let id): PlantacionDetalleView(id: id)
                     case .prediccion(let id): PrediccionDetalleView(id: id)
+                    case .reporte(let id): ReporteDetalleView(id: id)
                     default: PendienteView(titulo: "Próximamente")
                     }
                 }
                 .navigationDestination(for: RutaCampo.self) { ruta in
                     switch ruta {
                     case .terreno(let id): TerrenoDetalleView(id: id)
+                    case .mapaReportes: MapaReportesView()
                     }
                 }
         }
