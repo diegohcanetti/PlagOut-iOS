@@ -156,6 +156,14 @@ public final class SesionSupabase: ProveedorDeSesion {
         }
     }
 
+    /// Copia nombre, apellido y cargo a los datos de la cuenta de Supabase, para que coincidan
+    /// con el perfil del backend. Si falla no importa: el backend es la fuente.
+    public func espejarPerfil(nombre: String, apellido: String, cargoId: Int?) async {
+        var datos: [String: AnyJSON] = ["nombre": .string(nombre), "apellido": .string(apellido)]
+        if let cargoId { datos["cargo"] = .string(String(cargoId)) }
+        _ = try? await auth.update(user: UserAttributes(data: datos))
+    }
+
     /// Cierra la sesión del dispositivo. Si el servidor no responde, se borra igual la local.
     public func cerrarSesion() async {
         do {

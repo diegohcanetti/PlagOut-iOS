@@ -21,7 +21,7 @@ struct PestanasView: View {
             Pestana(camino: camino(.reportes)) { ReportesView() }
                 .tabItem { Label("Reportes", systemImage: "ant") }
                 .tag(Pestanas.reportes)
-            Pestana(camino: camino(.perfil)) { PendienteView(titulo: "Perfil") }
+            Pestana(camino: camino(.perfil)) { PerfilView() }
                 .tabItem { Label("Perfil", systemImage: "person.crop.circle") }
                 .tag(Pestanas.perfil)
         }
@@ -70,7 +70,8 @@ struct Pestana<Contenido: View>: View {
                     case .plantacion(let id): PlantacionDetalleView(id: id)
                     case .prediccion(let id): PrediccionDetalleView(id: id)
                     case .reporte(let id): ReporteDetalleView(id: id)
-                    default: PendienteView(titulo: "Próximamente")
+                    // Las listas (.monitoreos, .reportes, .terrenos) son pestañas: no se apilan.
+                    case .monitoreos, .reportes, .terrenos: EmptyView()
                     }
                 }
                 .navigationDestination(for: RutaCampo.self) { ruta in
@@ -80,23 +81,5 @@ struct Pestana<Contenido: View>: View {
                     }
                 }
         }
-    }
-}
-
-/// Lugar reservado para las pantallas de las próximas etapas.
-struct PendienteView: View {
-    @Environment(AppEstado.self) private var estado
-    let titulo: String
-
-    var body: some View {
-        VStack(spacing: 16) {
-            EstadoVacio(icono: "hammer", titulo: titulo, detalle: "En construcción.")
-            if titulo == "Perfil" {
-                Button("Cerrar sesión", role: .destructive) { Task { await estado.cerrarSesion() } }
-            }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .fondoCampo()
-        .navigationTitle(titulo)
     }
 }
