@@ -88,7 +88,8 @@ struct NuevaPasswordView: View {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Volver") {
                     Task {
-                        await estado.sesion.cerrarSesion()
+                        // Con el link abierto, la sesión es la de recuperación: no sirve para entrar.
+                        if estado.recuperacion == .nuevaPassword { await estado.cerrarSesion() }
                         estado.terminarRecuperacion()
                     }
                 }
@@ -117,12 +118,8 @@ struct NuevaPasswordView: View {
                 .foregroundStyle(Paleta.riesgoAlto)
             Text("Este enlace para recuperar tu contraseña ya fue utilizado o ha caducado. Por seguridad, cada enlace puede usarse una sola vez.")
                 .foregroundStyle(Paleta.texto)
-            BotonPrincipal(titulo: "Volver al inicio de sesión") {
-                Task {
-                    await estado.sesion.cerrarSesion()
-                    estado.terminarRecuperacion()
-                }
-            }
+            // Un link vencido no abrió ninguna sesión: se vuelve a donde estaba.
+            BotonPrincipal(titulo: "Volver al inicio de sesión") { estado.terminarRecuperacion() }
         }
     }
 
@@ -139,6 +136,7 @@ struct NuevaPasswordView: View {
         defer { cargando = false }
         do {
             try await estado.sesion.restablecerPassword(nueva)
+            await estado.cerrarSesion()
             estado.terminarRecuperacion(mensaje: "¡Contraseña restablecida con éxito! Ya podés iniciar sesión.")
         } catch {
             if error.enlaceInvalido {

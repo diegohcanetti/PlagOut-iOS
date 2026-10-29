@@ -80,7 +80,11 @@ struct SelectorUbicacion: View {
               let lon = Double(longitud.replacingOccurrences(of: ",", with: ".")),
               (-90...90).contains(lat), (-180...180).contains(lon) else { return }
         let punto = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        if coordenada?.latitude != lat || coordenada?.longitude != lon { coordenada = punto }
+        if coordenada?.latitude != lat || coordenada?.longitude != lon {
+            coordenada = punto
+            // Escritas a mano: el mapa va hasta ahí para que se vea el marcador.
+            camara = .region(MKCoordinateRegion(center: punto, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)))
+        }
     }
 }
 

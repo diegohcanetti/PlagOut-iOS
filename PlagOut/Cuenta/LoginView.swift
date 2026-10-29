@@ -2,6 +2,10 @@ import PlagOutCore
 import SwiftUI
 
 struct LoginView: View {
+    #if DEBUG
+    @MainActor private static var entroConDemo = false
+    #endif
+
     @Environment(AppEstado.self) private var estado
     @State private var email = ""
     @State private var password = ""
@@ -65,7 +69,9 @@ struct LoginView: View {
         // solo, para probar en el simulador sin tipear.
         .task {
             let entorno = ProcessInfo.processInfo.environment
-            if let demo = entorno["PLAGOUT_DEMO_EMAIL"], let clave = entorno["PLAGOUT_DEMO_PASSWORD"], email.isEmpty {
+            // Una sola vez por proceso: después de cerrar sesión se queda en el login.
+            if let demo = entorno["PLAGOUT_DEMO_EMAIL"], let clave = entorno["PLAGOUT_DEMO_PASSWORD"], !Self.entroConDemo {
+                Self.entroConDemo = true
                 email = demo
                 password = clave
                 await entrar()
