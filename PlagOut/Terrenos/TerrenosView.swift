@@ -5,6 +5,7 @@ import SwiftUI
 /// Rutas propias de la pestaña Terrenos.
 enum RutaCampo: Hashable {
     case terreno(Int)
+    case mapaReportes
 }
 
 struct TerrenosView: View {

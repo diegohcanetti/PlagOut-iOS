@@ -162,6 +162,7 @@ private struct DetalleSeccion: View {
                         Label("Eliminar monitoreo", systemImage: "trash").frame(maxWidth: .infinity, minHeight: 44)
                     }
                     .buttonStyle(.bordered)
+                    .tint(Paleta.riesgoAlto)
                 }
                 .disabled(modelo.guardando)
             }

@@ -158,3 +158,16 @@ struct ReglasCampoTests {
         #expect(!rango.contains(DiaCalendario(anio: 2026, mes: 10, dia: 29)))
     }
 }
+
+struct ReglasReporteTests {
+    @Test func etapasYTextos() throws {
+        let barrenador = try #require(try decodificar([Plaga].self, "plagas").first { $0.nombreCientifico == "Diatraea saccharalis" })
+        #expect(ReglasReporte.etapas(de: barrenador) == [.huevo, .larva, .adulto])
+        #expect(ReglasReporte.etiqueta(etapa: "LARVA") == "Larva")
+        #expect(ReglasReporte.distancia(km: 0.35) == "350 m")
+        #expect(ReglasReporte.distancia(km: 4.24) == "4,2 km")
+        #expect(ReglasReporte.distancia(km: 18.4) == "18 km")
+        #expect(ReglasReporte.zoom(anchoEnGrados: 360) == 1)
+        #expect(ReglasReporte.zoom(anchoEnGrados: 0.7) == 9)
+    }
+}

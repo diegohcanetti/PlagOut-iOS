@@ -77,3 +77,40 @@ extension Errores {
         500: "No se pudo crear el monitoreo. Intentá de nuevo.",
     ]
 }
+
+public enum ReglasReporte {
+    /// Las etapas que admite un reporte de esa plaga; sin dato, todas.
+    public static func etapas(de plaga: Plaga) -> [EtapaBiologica] {
+        let propias = (plaga.etapas ?? []).compactMap(EtapaBiologica.init(rawValue:))
+        return propias.isEmpty ? EtapaBiologica.allCases : propias
+    }
+
+    /// "Larva" a partir de "LARVA" (los reportes viejos pueden traer etapas fuera del contrato).
+    public static func etiqueta(etapa codigo: String) -> String {
+        let limpio = codigo.trimmingCharacters(in: .whitespaces).lowercased()
+        return limpio.prefix(1).uppercased() + limpio.dropFirst()
+    }
+
+    /// "350 m", "4,2 km", "18 km".
+    public static func distancia(km: Double) -> String {
+        if km < 1 { return "\(Int((km * 1000).rounded())) m" }
+        let formato = km < 10 ? FloatingPointFormatStyle<Double>.number.precision(.fractionLength(1)) : .number.precision(.fractionLength(0))
+        return km.formatted(formato.locale(Locale(identifier: "es_AR"))) + " km"
+    }
+
+    /// El zoom de un mapa (escala de teselas) a partir del ancho visible en grados.
+    public static func zoom(anchoEnGrados: Double) -> Int {
+        guard anchoEnGrados > 0 else { return 18 }
+        return max(1, min(18, Int(log2(360 / anchoEnGrados).rounded(.down))))
+    }
+}
+
+extension Severidad {
+    public var descripcion: String {
+        switch self {
+        case .bajo: "Avistamiento inicial o presencias mínimas aisladas."
+        case .medio: "Presencia moderada o visible en varias plantas."
+        case .alto: "Infestación severa o daño crítico que pone en riesgo el rendimiento del lote."
+        }
+    }
+}
