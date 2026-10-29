@@ -16,7 +16,7 @@ struct TerrenosView: View {
         let datos = estado.datos
         ScrollView {
             LazyVStack(spacing: 12) {
-                if datos.cargando {
+                if datos.cargando || (!datos.cargado && datos.error == nil) {
                     ProgressView().padding(40)
                 } else if let error = datos.error, !datos.cargado {
                     EstadoVacio(icono: "wifi.exclamationmark", titulo: "No se pudieron cargar los terrenos", detalle: error,

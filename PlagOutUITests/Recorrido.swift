@@ -221,4 +221,18 @@ final class Recorrido: XCTestCase {
         captura("u04-eliminar")
         app.buttons["Cancelar"].tap()
     }
+
+    func testTableros() {
+        esperar(app.navigationBars["Mis Monitoreos"])
+        app.tabBars.buttons["Tableros"].tap()
+        esperar(app.navigationBars["Tableros de Control"])
+        sleep(2)
+        captura("k01-productor")
+        app.buttons["Control"].tap()
+        sleep(1)
+        captura("k02-control")
+        app.buttons["Histórico"].tap()
+        sleep(1)
+        captura("k03-historico")
+    }
 }

@@ -3,7 +3,7 @@ import SwiftUI
 
 /// Las pestañas del productor (`BottomNavigationBar` de Android, sin Tableros).
 struct PestanasView: View {
-    enum Pestanas: Hashable { case monitoreos, terrenos, reportes, perfil }
+    enum Pestanas: Hashable { case monitoreos, terrenos, tableros, reportes, perfil }
 
     @Environment(AppEstado.self) private var estado
     @Environment(\.scenePhase) private var fase
@@ -18,6 +18,9 @@ struct PestanasView: View {
             Pestana(camino: camino(.terrenos)) { TerrenosView() }
                 .tabItem { Label("Terrenos", systemImage: "map") }
                 .tag(Pestanas.terrenos)
+            Pestana(camino: camino(.tableros)) { TablerosView() }
+                .tabItem { Label("Tableros", systemImage: "chart.pie") }
+                .tag(Pestanas.tableros)
             Pestana(camino: camino(.reportes)) { ReportesView() }
                 .tabItem { Label("Reportes", systemImage: "ant") }
                 .tag(Pestanas.reportes)
