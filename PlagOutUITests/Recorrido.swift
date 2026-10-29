@@ -32,7 +32,9 @@ final class Recorrido: XCTestCase {
     }
 
     func esperar(_ elemento: XCUIElement, _ segundos: TimeInterval = 20) {
-        XCTAssertTrue(elemento.waitForExistence(timeout: segundos), "No apareció \(elemento)")
+        let aparecio = elemento.waitForExistence(timeout: segundos)
+        if !aparecio { captura("fallo-\(name.replacingOccurrences(of: " ", with: "_"))") }
+        XCTAssertTrue(aparecio, "No apareció \(elemento)")
     }
 
     func testMonitoreoYSusPestanas() {
@@ -234,5 +236,114 @@ final class Recorrido: XCTestCase {
         app.buttons["Histórico"].tap()
         sleep(1)
         captura("k03-historico")
+    }
+
+    /// Escribe en producción: terreno → cultivo → monitoreo → biofix, y borra el terreno (se
+    /// llevan su cultivo y su monitoreo).
+    func testAltaCompletaYBorrado() {
+        esperar(app.navigationBars["Mis Monitoreos"])
+        app.tabBars.buttons["Terrenos"].tap()
+        esperar(app.navigationBars["Mis Terrenos"])
+        app.buttons["Nuevo Terreno"].firstMatch.tap()
+        esperar(app.navigationBars["Nuevo Terreno"])
+        let nombre = app.textFields["Nombre del terreno"]
+        nombre.tap()
+        nombre.typeText("Prueba iOS")
+        let hectareas = app.textFields["Hectáreas"]
+        hectareas.tap()
+        hectareas.typeText("3")
+        let latitud = app.textFields["Latitud (Ej: -34.60)"]
+        latitud.tap()
+        latitud.typeText("-34.6")
+        let longitud = app.textFields["Longitud (Ej: -58.38)"]
+        longitud.tap()
+        longitud.typeText("-60.9\n")
+        app.swipeUp()
+        app.buttons["GUARDAR TERRENO"].tap()
+        let terreno = app.staticTexts["Prueba iOS"].firstMatch
+        esperar(terreno)
+        captura("e01-terreno-creado")
+        terreno.tap()
+        app.buttons["Nuevo Cultivo"].tap()
+        esperar(app.navigationBars["Nuevo cultivo"])
+        selector("Cultivo").tap()
+        app.buttons["Maíz"].tap()
+        app.buttons["Guardar"].tap()
+        let cultivo = app.staticTexts["Maíz"].firstMatch
+        esperar(cultivo)
+        captura("e02-cultivo-creado")
+        cultivo.tap()
+        esperar(app.navigationBars["Detalle de cultivo"])
+        app.buttons["Nuevo Monitoreo"].tap()
+        esperar(app.navigationBars["Nuevo Monitoreo"])
+        selector("Plaga").tap()
+        app.buttons["Chicharrita del maíz"].tap()
+        captura("e03-nuevo-monitoreo")
+        app.buttons["Crear"].tap()
+        esperar(app.navigationBars["Monitoreo de plaga"])
+        let biofix = app.buttons["REGISTRAR BIOFIX"]
+        esperar(biofix)
+        biofix.tap()
+        esperar(app.navigationBars["Registrar presencia"])
+        app.buttons["Medio"].tap()
+        app.buttons["Confirmar"].tap()
+        esperar(app.staticTexts["Ciclo 1"], 30)
+        sleep(1)
+        captura("e04-biofix")
+        // La pestaña Terrenos quedó en el detalle del cultivo: se reabre la app para volver a la lista.
+        app.terminate()
+        app.launch()
+        borrarTerrenoDePrueba()
+        captura("e05-terreno-borrado")
+    }
+
+    func borrarTerrenoDePrueba() {
+        esperar(app.navigationBars["Mis Monitoreos"])
+        app.tabBars.buttons["Terrenos"].tap()
+        esperar(app.navigationBars["Mis Terrenos"])
+        let terreno = app.staticTexts["Prueba iOS"].firstMatch
+        guard terreno.waitForExistence(timeout: 10) else { return }
+        terreno.tap()
+        app.buttons["Más"].firstMatch.tap()
+        app.buttons["Eliminar terreno"].tap()
+        app.buttons["Eliminar"].firstMatch.tap()
+        esperar(app.navigationBars["Mis Terrenos"])
+        sleep(3)
+        XCTAssertFalse(app.staticTexts["Prueba iOS"].exists)
+        // El biofix creó una alerta que sobrevive al terreno ("Terreno eliminado"): se borra.
+        app.tabBars.buttons["Reportes"].tap()
+        esperar(app.navigationBars["Alertas de plagas"])
+        let huerfana = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH %@", "Terreno eliminado")).firstMatch
+        if huerfana.waitForExistence(timeout: 8) {
+            huerfana.tap()
+            esperar(app.navigationBars["Detalle de Alerta"])
+            app.buttons["Eliminar alerta"].tap()
+            app.buttons["Eliminar"].firstMatch.tap()
+            esperar(app.navigationBars["Alertas de plagas"])
+        }
+    }
+
+    /// Por si una prueba de escritura se cortó a la mitad.
+    func testLimpiarDatosDePrueba() {
+        borrarTerrenoDePrueba()
+    }
+
+    func testCerrarSesion() {
+        esperar(app.navigationBars["Mis Monitoreos"])
+        app.tabBars.buttons["Perfil"].tap()
+        esperar(app.navigationBars["Mi perfil"])
+        app.swipeUp()
+        app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Cerrar sesión")).firstMatch.tap()
+        app.buttons["Cerrar sesión"].firstMatch.tap()
+        esperar(app.staticTexts["Bienvenido"])
+        captura("s01-sesion-cerrada")
+    }
+
+    func testEnlaceDeRecuperacionVencido() {
+        esperar(app.staticTexts["Enlace no válido o ya utilizado"])
+        captura("s02-enlace-vencido")
+        app.buttons["VOLVER AL INICIO DE SESIÓN"].tap()
+        // Había entrado con la cuenta de demo: vuelve a la app, no al login.
+        esperar(app.navigationBars["Mis Monitoreos"])
     }
 }
