@@ -12,6 +12,7 @@
 		2D022EBFA0B95E81EBCC67D4 /* Niveles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832BB75926745886246FF035 /* Niveles.swift */; };
 		301A2287F777303EA859DE95 /* MonitoreoDetalleModelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC5C5CF5EF89A532641E73 /* MonitoreoDetalleModelo.swift */; };
 		3742A639A7F314747F9C8A08 /* Componentes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A544520D8EDC72423C1238 /* Componentes.swift */; };
+		38224E511DAC053F92186C9B /* TerrenosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F5E85F9FE3DEF0B23DC129 /* TerrenosView.swift */; };
 		499B26EE41B1E1EBC272CD81 /* PlagOutCore in Frameworks */ = {isa = PBXBuildFile; productRef = C7FBEB2B1C47927DBE640899 /* PlagOutCore */; };
 		588BD722E5FB9BEC3006BECE /* TratamientosSeccion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437E8C0015E6A1DB2DCDB5F1 /* TratamientosSeccion.swift */; };
 		5A04886846D7F5A075C25095 /* Configuracion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F31385F83DBA62D1162D0 /* Configuracion.swift */; };
@@ -22,10 +23,14 @@
 		AFC214521958EDAC2D15AFD2 /* PlagOutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EC5A803269504FDDF1DC8E /* PlagOutApp.swift */; };
 		BE167E80454EFF6C29D33943 /* MonitoreosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B670E45A76A0036651E8ABB /* MonitoreosView.swift */; };
 		DAE6FD974EC53B706854F995 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27129022544AD744BBF04C7 /* LoginView.swift */; };
+		E42C7E04F31CD6CCA0D3C49C /* DatosCampo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242A4EBB7BBB01F4364F4169 /* DatosCampo.swift */; };
 		E5A6CB120E7A51E3EEDB9C79 /* RecuperarPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8210443D295C860DD6FC316C /* RecuperarPasswordView.swift */; };
+		EF5C16C670E576BC006A933C /* PlantacionDetalleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C582C3242194407987A3ADF9 /* PlantacionDetalleView.swift */; };
 		F5472DCFACC1690A2037D3D9 /* PlagOutAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2A5F12BADA606F8D78A1D533 /* PlagOutAuth */; };
+		F5AB69DC29C1B745EC074A97 /* TerrenoDetalleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22C4F88243A181B37385348 /* TerrenoDetalleView.swift */; };
 		F8043C442B96326558C17FF3 /* PestanasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B053F0791F1A8A1EF362CE68 /* PestanasView.swift */; };
 		F9EF9BC8CC19B4060D79F690 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7AF69B538A4E3E6B7D678D0 /* Assets.xcassets */; };
+		FACC1C35AEA76664873E791F /* UbicacionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBBC994EAC4E2F0898B0FB /* UbicacionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +47,8 @@
 		1B8F5216F7086048F6463062 /* Tema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tema.swift; sourceTree = "<group>"; };
 		1D72F01CEFFD6ACAC12E376D /* PlagOutCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PlagOutCore; path = PlagOutCore; sourceTree = SOURCE_ROOT; };
 		21FC5C5CF5EF89A532641E73 /* MonitoreoDetalleModelo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoreoDetalleModelo.swift; sourceTree = "<group>"; };
+		242A4EBB7BBB01F4364F4169 /* DatosCampo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatosCampo.swift; sourceTree = "<group>"; };
+		24F5E85F9FE3DEF0B23DC129 /* TerrenosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrenosView.swift; sourceTree = "<group>"; };
 		437E8C0015E6A1DB2DCDB5F1 /* TratamientosSeccion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TratamientosSeccion.swift; sourceTree = "<group>"; };
 		4901F1B9363D0DD007D35077 /* PlagOutUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PlagOutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A544520D8EDC72423C1238 /* Componentes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Componentes.swift; sourceTree = "<group>"; };
@@ -58,8 +65,11 @@
 		B27129022544AD744BBF04C7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B2EC5A803269504FDDF1DC8E /* PlagOutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlagOutApp.swift; sourceTree = "<group>"; };
 		BE5F31385F83DBA62D1162D0 /* Configuracion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuracion.swift; sourceTree = "<group>"; };
+		C582C3242194407987A3ADF9 /* PlantacionDetalleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantacionDetalleView.swift; sourceTree = "<group>"; };
 		C7AF69B538A4E3E6B7D678D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C8FBBC994EAC4E2F0898B0FB /* UbicacionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UbicacionView.swift; sourceTree = "<group>"; };
 		D8EA81D1B296C6CC6840BFA0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		F22C4F88243A181B37385348 /* TerrenoDetalleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrenoDetalleView.swift; sourceTree = "<group>"; };
 		F8EA64026CAA68FA79DE6541 /* PlagOut.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PlagOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -91,6 +101,7 @@
 			children = (
 				7ADA491EE191E92B7BCD42F4 /* AppEstado.swift */,
 				BE5F31385F83DBA62D1162D0 /* Configuracion.swift */,
+				242A4EBB7BBB01F4364F4169 /* DatosCampo.swift */,
 				B2EC5A803269504FDDF1DC8E /* PlagOutApp.swift */,
 			);
 			path = App;
@@ -115,6 +126,7 @@
 				B6D3C62A23398538F9422E4D /* Inicio */,
 				91C899E1BCD9A58F672F14EC /* Monitoreos */,
 				DD0154A1900728B463406600 /* Recursos */,
+				7E57C6340424A999FE577AB4 /* Terrenos */,
 			);
 			path = PlagOut;
 			sourceTree = "<group>";
@@ -143,6 +155,17 @@
 				A5CD90DB373B9E6224BB1445 /* Recorrido.swift */,
 			);
 			path = PlagOutUITests;
+			sourceTree = "<group>";
+		};
+		7E57C6340424A999FE577AB4 /* Terrenos */ = {
+			isa = PBXGroup;
+			children = (
+				C582C3242194407987A3ADF9 /* PlantacionDetalleView.swift */,
+				F22C4F88243A181B37385348 /* TerrenoDetalleView.swift */,
+				24F5E85F9FE3DEF0B23DC129 /* TerrenosView.swift */,
+				C8FBBC994EAC4E2F0898B0FB /* UbicacionView.swift */,
+			);
+			path = Terrenos;
 			sourceTree = "<group>";
 		};
 		91C899E1BCD9A58F672F14EC /* Monitoreos */ = {
@@ -287,6 +310,7 @@
 				11AEE20479F245328FA2CA7C /* CiclosSeccion.swift in Sources */,
 				3742A639A7F314747F9C8A08 /* Componentes.swift in Sources */,
 				5A04886846D7F5A075C25095 /* Configuracion.swift in Sources */,
+				E42C7E04F31CD6CCA0D3C49C /* DatosCampo.swift in Sources */,
 				DAE6FD974EC53B706854F995 /* LoginView.swift in Sources */,
 				301A2287F777303EA859DE95 /* MonitoreoDetalleModelo.swift in Sources */,
 				AA9F908E3C2296CB6E3C7574 /* MonitoreoDetalleView.swift in Sources */,
@@ -294,10 +318,14 @@
 				2D022EBFA0B95E81EBCC67D4 /* Niveles.swift in Sources */,
 				F8043C442B96326558C17FF3 /* PestanasView.swift in Sources */,
 				AFC214521958EDAC2D15AFD2 /* PlagOutApp.swift in Sources */,
+				EF5C16C670E576BC006A933C /* PlantacionDetalleView.swift in Sources */,
 				E5A6CB120E7A51E3EEDB9C79 /* RecuperarPasswordView.swift in Sources */,
 				91521F1CAC682C88D85840E9 /* RegistroView.swift in Sources */,
 				96C1015E1A9973888EE1D0F7 /* Tema.swift in Sources */,
+				F5AB69DC29C1B745EC074A97 /* TerrenoDetalleView.swift in Sources */,
+				38224E511DAC053F92186C9B /* TerrenosView.swift in Sources */,
 				588BD722E5FB9BEC3006BECE /* TratamientosSeccion.swift in Sources */,
+				FACC1C35AEA76664873E791F /* UbicacionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

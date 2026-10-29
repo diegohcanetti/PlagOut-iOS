@@ -129,3 +129,32 @@ struct CiclosTests {
         #expect(archivado.actualizacionVisible.description == "2026-09-14")
     }
 }
+
+struct ReglasCampoTests {
+    @Test func terreno() {
+        #expect(ReglasCampo.errorTerreno(nombre: " ", hectareas: "10") == "El nombre del terreno no puede estar vacío")
+        #expect(ReglasCampo.errorTerreno(nombre: "Lote", hectareas: "0") == "Las hectáreas deben ser un número decimal mayor a 0")
+        #expect(ReglasCampo.errorTerreno(nombre: "Lote", hectareas: "100001") == "Las hectáreas no pueden superar las 100.000")
+        #expect(ReglasCampo.errorTerreno(nombre: "Lote", hectareas: "12,5") == nil)
+        #expect(ReglasCampo.enArgentina(latitud: -34.6, longitud: -58.4))
+        #expect(!ReglasCampo.enArgentina(latitud: 40.4, longitud: -3.7))
+    }
+
+    @Test func plagasQueSePuedenMonitorear() throws {
+        let plagas = try decodificar([Plaga].self, "plagas")
+        let maiz = try #require(try decodificar([Cultivo].self, "cultivos").first { $0.nombre == "Maíz" })
+        let todas = ReglasCampo.plagasParaMonitorear(plagas, cultivoId: maiz.id, yaMonitoreadas: [])
+        #expect(!todas.disponibles.isEmpty)
+        #expect(todas.disponibles.allSatisfy { $0.admiteMonitoreo && $0.afecta(cultivoId: maiz.id) })
+        let unaYa = try #require(todas.disponibles.first)
+        let filtradas = ReglasCampo.plagasParaMonitorear(plagas, cultivoId: maiz.id, yaMonitoreadas: [unaYa.id])
+        #expect(filtradas.yaMonitoreadas == 1)
+        #expect(!filtradas.disponibles.contains(unaYa))
+    }
+
+    @Test func siembra() {
+        let rango = ReglasCampo.rangoSiembra(hoy: DiaCalendario(anio: 2026, mes: 10, dia: 28))
+        #expect(rango.lowerBound.description == "2025-10-28")
+        #expect(!rango.contains(DiaCalendario(anio: 2026, mes: 10, dia: 29)))
+    }
+}

@@ -53,6 +53,8 @@ struct MonitoreoDetalleView: View {
         .navigationTitle("Monitoreo de plaga")
         .navigationBarTitleDisplayMode(.inline)
         .task { await modelo.cargar(estado.api) }
+        // Lo que cambió acá (biofix, finalizar, borrar) se ve al volver a las listas.
+        .onDisappear { Task { await estado.datos.cargar(estado.api) } }
     }
 }
 

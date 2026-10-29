@@ -14,7 +14,7 @@ struct PestanasView: View {
             Pestana(camino: camino(.monitoreos)) { MonitoreosView() }
                 .tabItem { Label("Monitoreos", systemImage: "flask") }
                 .tag(Pestanas.monitoreos)
-            Pestana(camino: camino(.terrenos)) { PendienteView(titulo: "Terrenos") }
+            Pestana(camino: camino(.terrenos)) { TerrenosView() }
                 .tabItem { Label("Terrenos", systemImage: "map") }
                 .tag(Pestanas.terrenos)
             Pestana(camino: camino(.reportes)) { PendienteView(titulo: "Reportes") }
@@ -61,7 +61,13 @@ struct Pestana<Contenido: View>: View {
                 .navigationDestination(for: Destino.self) { destino in
                     switch destino {
                     case .monitoreo(let id): MonitoreoDetalleView(id: id)
+                    case .plantacion(let id): PlantacionDetalleView(id: id)
                     default: PendienteView(titulo: "Próximamente")
+                    }
+                }
+                .navigationDestination(for: RutaCampo.self) { ruta in
+                    switch ruta {
+                    case .terreno(let id): TerrenoDetalleView(id: id)
                     }
                 }
         }
