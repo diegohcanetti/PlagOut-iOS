@@ -163,6 +163,23 @@ public enum Errores {
         "treatment_idempotency_key_reused": "No se pudo registrar el tratamiento. Cargalo de nuevo.",
     ]
 
+    public static let biofix: [String: String] = reporte.merging([
+        "monitoring_not_found": "Monitoreo no encontrado.",
+        "active_cycle_not_found": "El ciclo no existe.",
+        "monitoring_inactive": "El monitoreo o la plantación están finalizados.",
+        "cycle_not_active": "Ese ciclo ya no está activo.",
+        "biofix_idempotency_key_reused": "No se pudo registrar el biofix. Intentá de nuevo.",
+        "biofix_observation_date_invalid": "La fecha debe estar entre el inicio del monitoreo y hoy.",
+        "biofix_observation_before_cycle": "La fecha es anterior al inicio del ciclo.",
+        "biofix_thermal_parameters_missing": "Esta plaga no tiene datos térmicos configurados.",
+    ]) { _, nuevo in nuevo }
+
+    /// Cambios sobre un monitoreo (umbral, notas, alertas, finalizar).
+    public static let edicionMonitoreo: [String: String] = [
+        "monitoring_finalized": "El monitoreo ya fue finalizado y no puede reactivarse.",
+        "ml_alert_model_unavailable": "Esta plaga todavía no tiene un modelo de alertas aprobado.",
+    ]
+
     public static let archivarCiclo: [String: String] = [
         "cycle_not_found": "El ciclo no existe.",
         "cycle_completed": "El ciclo ya se completó.",

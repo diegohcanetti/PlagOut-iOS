@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11AEE20479F245328FA2CA7C /* CiclosSeccion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9174B3A55FFDA5D7B5D5B518 /* CiclosSeccion.swift */; };
+		12DB8C81CCA8F370F363F492 /* Recorrido.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CD90DB373B9E6224BB1445 /* Recorrido.swift */; };
 		2D022EBFA0B95E81EBCC67D4 /* Niveles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832BB75926745886246FF035 /* Niveles.swift */; };
+		301A2287F777303EA859DE95 /* MonitoreoDetalleModelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FC5C5CF5EF89A532641E73 /* MonitoreoDetalleModelo.swift */; };
 		3742A639A7F314747F9C8A08 /* Componentes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A544520D8EDC72423C1238 /* Componentes.swift */; };
 		499B26EE41B1E1EBC272CD81 /* PlagOutCore in Frameworks */ = {isa = PBXBuildFile; productRef = C7FBEB2B1C47927DBE640899 /* PlagOutCore */; };
+		588BD722E5FB9BEC3006BECE /* TratamientosSeccion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437E8C0015E6A1DB2DCDB5F1 /* TratamientosSeccion.swift */; };
 		5A04886846D7F5A075C25095 /* Configuracion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5F31385F83DBA62D1162D0 /* Configuracion.swift */; };
 		7B41C422ACA00C6525EB009F /* AppEstado.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADA491EE191E92B7BCD42F4 /* AppEstado.swift */; };
 		91521F1CAC682C88D85840E9 /* RegistroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F38C231CB41B9479B934D6 /* RegistroView.swift */; };
 		96C1015E1A9973888EE1D0F7 /* Tema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F5216F7086048F6463062 /* Tema.swift */; };
+		AA9F908E3C2296CB6E3C7574 /* MonitoreoDetalleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C903517D4CDF1161B5CA656 /* MonitoreoDetalleView.swift */; };
 		AFC214521958EDAC2D15AFD2 /* PlagOutApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EC5A803269504FDDF1DC8E /* PlagOutApp.swift */; };
 		BE167E80454EFF6C29D33943 /* MonitoreosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B670E45A76A0036651E8ABB /* MonitoreosView.swift */; };
 		DAE6FD974EC53B706854F995 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27129022544AD744BBF04C7 /* LoginView.swift */; };
@@ -23,16 +28,32 @@
 		F9EF9BC8CC19B4060D79F690 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7AF69B538A4E3E6B7D678D0 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B273538AA76C2E58A4BDB39D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA2B49E2E0C911349AAE2C04 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A287BD3F8D8F150927A22A7E;
+			remoteInfo = PlagOut;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1B8F5216F7086048F6463062 /* Tema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tema.swift; sourceTree = "<group>"; };
 		1D72F01CEFFD6ACAC12E376D /* PlagOutCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PlagOutCore; path = PlagOutCore; sourceTree = SOURCE_ROOT; };
+		21FC5C5CF5EF89A532641E73 /* MonitoreoDetalleModelo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoreoDetalleModelo.swift; sourceTree = "<group>"; };
+		437E8C0015E6A1DB2DCDB5F1 /* TratamientosSeccion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TratamientosSeccion.swift; sourceTree = "<group>"; };
+		4901F1B9363D0DD007D35077 /* PlagOutUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PlagOutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A544520D8EDC72423C1238 /* Componentes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Componentes.swift; sourceTree = "<group>"; };
 		72AC2EA755C83CF33851AC0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		75F38C231CB41B9479B934D6 /* RegistroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistroView.swift; sourceTree = "<group>"; };
 		7ADA491EE191E92B7BCD42F4 /* AppEstado.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEstado.swift; sourceTree = "<group>"; };
+		7C903517D4CDF1161B5CA656 /* MonitoreoDetalleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoreoDetalleView.swift; sourceTree = "<group>"; };
 		8210443D295C860DD6FC316C /* RecuperarPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperarPasswordView.swift; sourceTree = "<group>"; };
 		832BB75926745886246FF035 /* Niveles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Niveles.swift; sourceTree = "<group>"; };
+		9174B3A55FFDA5D7B5D5B518 /* CiclosSeccion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CiclosSeccion.swift; sourceTree = "<group>"; };
 		9B670E45A76A0036651E8ABB /* MonitoreosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitoreosView.swift; sourceTree = "<group>"; };
+		A5CD90DB373B9E6224BB1445 /* Recorrido.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recorrido.swift; sourceTree = "<group>"; };
 		B053F0791F1A8A1EF362CE68 /* PestanasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PestanasView.swift; sourceTree = "<group>"; };
 		B27129022544AD744BBF04C7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B2EC5A803269504FDDF1DC8E /* PlagOutApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlagOutApp.swift; sourceTree = "<group>"; };
@@ -111,14 +132,27 @@
 			children = (
 				50F821CB50A476ABD3CE436F /* Packages */,
 				3BF6383AE8BA17AA2A2DD1E3 /* PlagOut */,
+				7736837AB9E65D5AF55578A7 /* PlagOutUITests */,
 				BFF316E252ABA33CCAA46F99 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		7736837AB9E65D5AF55578A7 /* PlagOutUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A5CD90DB373B9E6224BB1445 /* Recorrido.swift */,
+			);
+			path = PlagOutUITests;
 			sourceTree = "<group>";
 		};
 		91C899E1BCD9A58F672F14EC /* Monitoreos */ = {
 			isa = PBXGroup;
 			children = (
+				9174B3A55FFDA5D7B5D5B518 /* CiclosSeccion.swift */,
+				21FC5C5CF5EF89A532641E73 /* MonitoreoDetalleModelo.swift */,
+				7C903517D4CDF1161B5CA656 /* MonitoreoDetalleView.swift */,
 				9B670E45A76A0036651E8ABB /* MonitoreosView.swift */,
+				437E8C0015E6A1DB2DCDB5F1 /* TratamientosSeccion.swift */,
 			);
 			path = Monitoreos;
 			sourceTree = "<group>";
@@ -135,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EA64026CAA68FA79DE6541 /* PlagOut.app */,
+				4901F1B9363D0DD007D35077 /* PlagOutUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +208,24 @@
 			productReference = F8EA64026CAA68FA79DE6541 /* PlagOut.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BA9BC8158F39AAAD2D300C87 /* PlagOutUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D8B168371DBC71D5E02EB43 /* Build configuration list for PBXNativeTarget "PlagOutUITests" */;
+			buildPhases = (
+				E1BF025CD64DE77E354032CA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7EAC96EEB87130F7B47EA229 /* PBXTargetDependency */,
+			);
+			name = PlagOutUITests;
+			packageProductDependencies = (
+			);
+			productName = PlagOutUITests;
+			productReference = 4901F1B9363D0DD007D35077 /* PlagOutUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -184,6 +237,10 @@
 				TargetAttributes = {
 					A287BD3F8D8F150927A22A7E = {
 						ProvisioningStyle = Automatic;
+					};
+					BA9BC8158F39AAAD2D300C87 = {
+						ProvisioningStyle = Automatic;
+						TestTargetID = A287BD3F8D8F150927A22A7E;
 					};
 				};
 			};
@@ -205,6 +262,7 @@
 			projectRoot = "";
 			targets = (
 				A287BD3F8D8F150927A22A7E /* PlagOut */,
+				BA9BC8158F39AAAD2D300C87 /* PlagOutUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -226,9 +284,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B41C422ACA00C6525EB009F /* AppEstado.swift in Sources */,
+				11AEE20479F245328FA2CA7C /* CiclosSeccion.swift in Sources */,
 				3742A639A7F314747F9C8A08 /* Componentes.swift in Sources */,
 				5A04886846D7F5A075C25095 /* Configuracion.swift in Sources */,
 				DAE6FD974EC53B706854F995 /* LoginView.swift in Sources */,
+				301A2287F777303EA859DE95 /* MonitoreoDetalleModelo.swift in Sources */,
+				AA9F908E3C2296CB6E3C7574 /* MonitoreoDetalleView.swift in Sources */,
 				BE167E80454EFF6C29D33943 /* MonitoreosView.swift in Sources */,
 				2D022EBFA0B95E81EBCC67D4 /* Niveles.swift in Sources */,
 				F8043C442B96326558C17FF3 /* PestanasView.swift in Sources */,
@@ -236,10 +297,27 @@
 				E5A6CB120E7A51E3EEDB9C79 /* RecuperarPasswordView.swift in Sources */,
 				91521F1CAC682C88D85840E9 /* RegistroView.swift in Sources */,
 				96C1015E1A9973888EE1D0F7 /* Tema.swift in Sources */,
+				588BD722E5FB9BEC3006BECE /* TratamientosSeccion.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1BF025CD64DE77E354032CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12DB8C81CCA8F370F363F492 /* Recorrido.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7EAC96EEB87130F7B47EA229 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A287BD3F8D8F150927A22A7E /* PlagOut */;
+			targetProxy = B273538AA76C2E58A4BDB39D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		02A1B2F37C62082D77D4525B /* Debug */ = {
@@ -388,6 +466,40 @@
 			};
 			name = Debug;
 		};
+		D48BBFF90B4D2D1A1E23986A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ar.plagout.ios.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PlagOut;
+			};
+			name = Release;
+		};
+		F3E80C2ADCCB4982AFF735AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ar.plagout.ios.uitests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PlagOut;
+			};
+			name = Debug;
+		};
 		F9A807425A8EED7BAAA9B6EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D8EA81D1B296C6CC6840BFA0 /* Config.xcconfig */;
@@ -410,6 +522,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5D8B168371DBC71D5E02EB43 /* Build configuration list for PBXNativeTarget "PlagOutUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3E80C2ADCCB4982AFF735AA /* Debug */,
+				D48BBFF90B4D2D1A1E23986A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		653376067DFC9B9209723696 /* Build configuration list for PBXNativeTarget "PlagOut" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

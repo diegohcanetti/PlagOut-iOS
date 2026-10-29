@@ -64,8 +64,12 @@ public struct PlagOutAPI: Sendable {
         try await cliente.pedir(Solicitud(.post, "/monitoreos", cuerpo: cuerpo(monitoreo)), porDetalle: porDetalle)
     }
 
-    public func actualizarMonitoreo(id: Int, _ cambios: CambiosMonitoreo) async throws(ErrorBackend) -> Monitoreo {
-        try await cliente.pedir(Solicitud(.patch, "/monitoreos/\(id)", cuerpo: cuerpo(cambios)))
+    public func actualizarMonitoreo(id: Int, _ cambios: CambiosMonitoreo, porCodigo: [Int: String] = [:]) async throws(ErrorBackend) -> Monitoreo {
+        try await cliente.pedir(
+            Solicitud(.patch, "/monitoreos/\(id)", cuerpo: cuerpo(cambios)),
+            porDetalle: Errores.edicionMonitoreo,
+            porCodigo: [404: "El monitoreo ya no existe."].merging(porCodigo) { _, nuevo in nuevo }
+        )
     }
 
     public func eliminarMonitoreo(id: Int) async throws(ErrorBackend) {
