@@ -216,6 +216,21 @@ final class Recorrido: XCTestCase {
         app.buttons["Listo"].tap()
     }
 
+    /// Necesita una alerta predictiva en la cuenta de demo; si no hay, se saltea.
+    func testNotificacionAbreLaPrediccion() throws {
+        esperar(app.navigationBars["Mis Monitoreos"])
+        app.buttons["Notificaciones"].tap()
+        esperar(app.navigationBars["Notificaciones"])
+        let aviso = app.buttons.matching(NSPredicate(format: "label CONTAINS 'Posible brote severo'")).firstMatch
+        guard aviso.waitForExistence(timeout: 15) else { throw XCTSkip("La cuenta de demo no tiene alertas predictivas") }
+        captura("p01-notificacion")
+        aviso.tap()
+        esperar(app.navigationBars["Alerta predictiva"])
+        esperar(app.buttons["Revisé y no la observé"])
+        sleep(1)
+        captura("p02-prediccion")
+    }
+
     func testPrediccionInexistente() {
         esperar(app.navigationBars["Alerta predictiva"])
         sleep(3)
