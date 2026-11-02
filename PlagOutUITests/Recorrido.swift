@@ -108,6 +108,71 @@ final class Recorrido: XCTestCase {
         captura("t02-tratamiento-borrado")
     }
 
+    /// Elige ayer en el selector de fecha número `indice` del formulario.
+    func elegirAyer(_ indice: Int) {
+        app.datePickers.element(boundBy: indice).tap()
+        let calendario = app.datePickers.collectionViews.firstMatch
+        esperar(calendario)
+        let dias = calendario.buttons.allElementsBoundByIndex
+        let hoy = dias.firstIndex { $0.label.hasPrefix("Hoy") }!
+        if hoy > 0 {
+            dias[hoy - 1].tap()
+        } else {
+            app.buttons["DatePicker.PreviousMonth"].tap()
+            sleep(1)
+            calendario.buttons.allElementsBoundByIndex.last!.tap()
+        }
+        app.buttons["PopoverDismissRegion"].tap()
+    }
+
+    func testTratamientoConTestigoMuestraLaEficacia() {
+        esperar(app.navigationBars["Mis Monitoreos"])
+        let tarjeta = app.staticTexts["Barrenador del tallo"].firstMatch
+        esperar(tarjeta)
+        tarjeta.tap()
+        esperar(app.navigationBars["Monitoreo de plaga"])
+        app.buttons["Tratamientos"].tap()
+        app.buttons["REGISTRAR TRATAMIENTO"].tap()
+        esperar(app.navigationBars["Registrar tratamiento"])
+        // Aplicado y contado ayer; el conteo posterior queda con la fecha que muestra (hoy).
+        elegirAyer(0)
+        let producto = app.textFields["Ej: Clorantraniliprole"]
+        producto.tap()
+        producto.typeText("Prueba testigo iOS")
+        let antes = app.textFields["Conteo antes"]
+        antes.tap()
+        antes.typeText("20")
+        elegirAyer(1)
+        app.switches["Dejé una franja sin tratar (testigo)"].switches.firstMatch.tap()
+        let testigoAntes = app.textFields["Testigo antes"]
+        esperar(testigoAntes)
+        testigoAntes.tap()
+        testigoAntes.typeText("20")
+        app.swipeUp()
+        app.switches["Ya tengo el conteo posterior"].switches.firstMatch.tap()
+        let despues = app.textFields["Conteo después"]
+        esperar(despues)
+        despues.tap()
+        despues.typeText("5")
+        let testigoDespues = app.textFields["Testigo después (opcional)"]
+        testigoDespues.tap()
+        testigoDespues.typeText("20")
+        captura("t03-tratamiento-con-testigo")
+        app.buttons["Guardar"].tap()
+        let creada = app.staticTexts["Prueba testigo iOS"]
+        esperar(creada)
+        // Henderson-Tilton: 1 − (5 × 20) / (20 × 20) = 75 %.
+        let eficacia = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Eficacia: 75'")).firstMatch
+        esperar(eficacia)
+        sleep(1)
+        captura("t04-eficacia")
+        app.buttons["Más"].firstMatch.tap()
+        app.buttons["Eliminar"].tap()
+        app.buttons["Eliminar"].firstMatch.tap()
+        sleep(3)
+        XCTAssertFalse(app.staticTexts["Prueba testigo iOS"].exists)
+    }
+
     func testTerrenosYAltasSinGuardar() {
         esperar(app.navigationBars["Mis Monitoreos"])
         app.buttons["Nuevo Monitoreo"].tap()

@@ -189,6 +189,10 @@ struct FormularioTratamientoView: View {
                 }
                 Section {
                     Toggle("Ya tengo el conteo posterior", isOn: $form.conDespues.animation())
+                        .onChange(of: form.conDespues) {
+                            // El selector muestra hoy aunque la fecha esté vacía: que lo que se ve sea lo que se manda.
+                            if form.conDespues && form.fechaConteoDespues == nil { form.fechaConteoDespues = .hoy() }
+                        }
                     if form.conDespues {
                         campoNumero("Conteo después", $form.conteoDespues, error: errores[.conteoDespues])
                         selectorFecha("Fecha del conteo", \.fechaConteoDespues, error: errores[.fechaConteoDespues])
