@@ -29,6 +29,17 @@ struct EstiloNivel: Equatable {
         }
     }
 
+    /// El nivel con las palabras de lo que cuenta: [hitos] son los de los monitoreos o ciclos en ese
+    /// nivel. Con pulgones vivíparos no se habla de huevo ni de eclosión (`PalabrasDeNivel`).
+    static func de(nivel: Int, hitos: [String?]) -> EstiloNivel {
+        let base = de(nivel: nivel)
+        guard let palabras = PalabrasDeNivel.para(nivel: nivel, hitos: hitos) else { return base }
+        return EstiloNivel(color: base.color, etiqueta: palabras.etiqueta, icono: base.icono,
+                           descripcion: palabras.descripcion, recomendacion: palabras.recomendacion ?? base.recomendacion)
+    }
+
+    static func de(nivel: Int, hito: String?) -> EstiloNivel { de(nivel: nivel, hitos: [hito]) }
+
     /// Un monitoreo finalizado prevalece por sobre su nivel de alerta.
     static let finalizado = EstiloNivel(color: Paleta.corteza, etiqueta: "Finalizado", icono: "flag.fill",
                                         descripcion: "El monitoreo se cerró: ya no se calculan los grados-día ni se envían alertas.")
@@ -39,7 +50,7 @@ struct EstiloNivel: Equatable {
     static func de(_ monitoreo: Monitoreo) -> EstiloNivel {
         if !monitoreo.estaActivo { return .finalizado }
         if monitoreo.esperandoBiofix { return .esperandoBiofix }
-        return .de(nivel: monitoreo.nivelAlertaEfectivo)
+        return .de(nivel: monitoreo.nivelAlertaEfectivo, hito: monitoreo.hito)
     }
 }
 

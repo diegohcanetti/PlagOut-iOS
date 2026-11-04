@@ -71,7 +71,7 @@ struct TablerosView: View {
                 ForEach(EtapaTermica.allCases, id: \.self) { etapa in
                     HStack {
                         Circle().fill(EstiloNivel.de(nivel: etapa.rawValue).color).frame(width: 10, height: 10)
-                        Text(etapa.etiqueta).font(.subheadline)
+                        Text(etapa.etiqueta(hitos: semaforo.hitos[etapa] ?? [])).font(.subheadline)
                         Spacer()
                         Text("\(formatoHectareas(semaforo.hectareas[etapa] ?? 0)) ha · \(semaforo.lotes[etapa] ?? 0) lotes")
                             .font(.subheadline)
@@ -115,7 +115,8 @@ struct TablerosView: View {
         Tarjeta {
             Titulo("Etapas de los monitoreos activos", "Cuántos monitoreos con mediciones hay en cada etapa según los grados-día acumulados.")
             Chart(EtapaTermica.allCases, id: \.self) { etapa in
-                BarMark(x: .value("Etapa", etapa.etiqueta), y: .value("Monitoreos", lotes.filter { $0.etapa == etapa }.count))
+                BarMark(x: .value("Etapa", etapa.etiqueta(hitos: lotes.filter { $0.etapa == etapa }.map(\.hito))),
+                        y: .value("Monitoreos", lotes.filter { $0.etapa == etapa }.count))
                     .foregroundStyle(EstiloNivel.de(nivel: etapa.rawValue).color)
                     .annotation(position: .top) {
                         Text("\(lotes.filter { $0.etapa == etapa }.count)").font(.caption.weight(.semibold))
@@ -125,7 +126,7 @@ struct TablerosView: View {
             .frame(height: 160)
         }
         Tarjeta {
-            Titulo("Lotes por etapa", "Del más avanzado al menos avanzado según la etapa y el avance hacia la eclosión")
+            Titulo("Lotes por etapa", "Del más avanzado al menos avanzado según la etapa y el avance térmico")
             if lotes.isEmpty {
                 Text("No hay monitoreos activos con mediciones.").font(.subheadline).foregroundStyle(Paleta.textoSecundario)
             }
@@ -135,7 +136,7 @@ struct TablerosView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(lote.terreno).font(.subheadline.weight(.semibold)).foregroundStyle(Paleta.texto)
                             Text("\(lote.cultivo) • \(lote.plaga)").font(.caption).foregroundStyle(Paleta.textoSecundario)
-                            Text(lote.etapa.recomendacion).font(.caption).foregroundStyle(Paleta.textoSecundario)
+                            Text(lote.etapa.recomendacion(hito: lote.hito)).font(.caption).foregroundStyle(Paleta.textoSecundario)
                         }
                         Spacer()
                         AnilloProgreso(progreso: lote.progreso, color: EstiloNivel.de(nivel: lote.etapa.rawValue).color, tamano: 48)

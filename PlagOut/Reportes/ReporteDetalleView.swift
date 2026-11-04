@@ -42,11 +42,14 @@ struct ReporteDetalleView: View {
                             if reporte.propio {
                                 Fila(titulo: "Terreno asignado", valor: reporte.terrenoNombre ?? "Terreno no especificado")
                             } else if let km = reporte.distanciaKm {
-                                Fila(titulo: "Terreno más cercano", valor: (estado.datos.terreno(reporte.terrenoMasCercanoId ?? -1)?.terrenoNombre).map { "\($0) · a \(ReglasReporte.distancia(km: km))" } ?? "A \(ReglasReporte.distancia(km: km))")
+                                let distancia = ReglasReporte.distancia(km: km)
+                                let terreno = reporte.terrenoMasCercanoId.flatMap { estado.datos.terreno($0)?.terrenoNombre }
+                                Fila(titulo: "Terreno más cercano", valor: terreno.map { "\($0) · a unos \(distancia)" } ?? "A unos \(distancia)")
                             }
                             if let cultivo = reporte.cultivoNombre { Fila(titulo: "Cultivo", valor: cultivo) }
                             if let lat = reporte.latitud, let lon = reporte.longitud {
-                                Fila(titulo: "Ubicación", valor: String(format: "Lat: %.4f · Lon: %.4f", lat, lon))
+                                let formato = reporte.propio ? "Lat: %.4f · Lon: %.4f" : "Lat: %.2f · Lon: %.2f"
+                                Fila(titulo: reporte.propio ? "Ubicación" : "Ubicación aproximada", valor: String(format: formato, lat, lon))
                             } else {
                                 Fila(titulo: "Ubicación", valor: "Sin coordenadas registradas")
                             }

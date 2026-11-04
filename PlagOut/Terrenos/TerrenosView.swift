@@ -101,7 +101,8 @@ struct TarjetaTerreno: View {
         if activos.isEmpty { return EstiloNivel(color: Paleta.corteza, etiqueta: "Todos finalizados", icono: "flag.fill") }
         if activos.allSatisfy(\.esperandoBiofix) { return .esperandoBiofix }
         let nivel = activos.map(\.nivelAlertaEfectivo).max() ?? -1
-        return nivel <= 0 ? EstiloNivel(color: Paleta.riesgoBajo, etiqueta: "Todo en orden", icono: "checkmark.circle.fill") : .de(nivel: nivel)
+        return nivel <= 0 ? EstiloNivel(color: Paleta.riesgoBajo, etiqueta: "Todo en orden", icono: "checkmark.circle.fill")
+            : .de(nivel: nivel, hitos: activos.hitos(enNivel: min(nivel, 2)))
     }
 }
 

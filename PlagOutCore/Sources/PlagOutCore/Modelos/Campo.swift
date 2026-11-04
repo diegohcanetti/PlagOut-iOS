@@ -192,6 +192,9 @@ public struct CicloGDD: Codable, Identifiable, Hashable, Sendable {
     public let diasPendientes: Int
     public let fechaEclosion: DiaCalendario?
     public let gddAcumuladoHuevo: Double?
+    /// Qué hito miden progreso y nivel: "eclosion", o "generacion" para los pulgones vivíparos,
+    /// que no tienen huevo. Sin dato (backend anterior) se toma "eclosion".
+    public let hito: String?
 
     /// Solo los ciclos "activo" siguen midiendo; el resto está finalizado (`CiclosUI.kt`).
     public var activo: Bool { estado == "activo" }
