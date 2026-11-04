@@ -73,7 +73,7 @@ struct TarjetaCiclo: View {
     var alFinalizar: (() -> Void)?
 
     var body: some View {
-        let estilo = ciclo.activo ? EstiloNivel.de(nivel: ciclo.nivelAlerta) : .finalizado
+        let estilo = ciclo.activo ? EstiloNivel.de(nivel: ciclo.nivelAlerta, hito: ciclo.hito) : .finalizado
         let objetivo = ciclo.objetivo(delMonitoreo: monitoreo.gddObjetivo)
         Tarjeta {
             HStack(alignment: .top) {

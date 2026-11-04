@@ -89,6 +89,8 @@ public struct SemaforoHectareas: Equatable, Sendable {
     public var hectareasEsperandoBiofix: Double
     public var lotesSinMonitoreo: Int
     public var hectareasSinMonitoreo: Double
+    /// Los hitos de los monitoreos que fijan la etapa de cada lote, para rotular cada etapa.
+    public var hitos: [EtapaTermica: [String?]] = [:]
 
     public var totalHectareas: Double { hectareas.values.reduce(0, +) }
     public var totalLotes: Int { lotes.values.reduce(0, +) }
@@ -117,6 +119,7 @@ public struct LoteEnEtapa: Equatable, Sendable, Identifiable {
     public let etapa: EtapaTermica
     public let progreso: Double
     public let estadio: String
+    public var hito: String? = nil
 }
 
 public enum Tableros {
@@ -163,8 +166,12 @@ public enum Tableros {
         let activos = monitoreos.filter(\.estaActivo)
         let areas = Dictionary(terrenos.map { ($0.id, $0.terrenoArea) }, uniquingKeysWith: { a, _ in a })
         var nivelPorTerreno: [Int: Int] = [:]
+        var hitosPorTerreno: [Int: [String?]] = [:]
         for (terreno, lista) in Dictionary(grouping: activos, by: \.terrenoId) {
-            if let nivel = lista.compactMap(\.nivelAlertaVigente).max() { nivelPorTerreno[terreno] = nivel }
+            if let nivel = lista.compactMap(\.nivelAlertaVigente).max() {
+                nivelPorTerreno[terreno] = nivel
+                hitosPorTerreno[terreno] = lista.filter { $0.nivelAlertaVigente == nivel }.map(\.hito)
+            }
         }
         var resultado = SemaforoHectareas(hectareas: [:], lotes: [:], lotesEsperandoBiofix: 0, hectareasEsperandoBiofix: 0,
                                           lotesSinMonitoreo: 0, hectareasSinMonitoreo: 0)
@@ -172,6 +179,7 @@ public enum Tableros {
             let etapa = EtapaTermica(nivel: nivel)
             resultado.hectareas[etapa, default: 0] += areas[terreno] ?? 0
             resultado.lotes[etapa, default: 0] += 1
+            resultado.hitos[etapa, default: []] += hitosPorTerreno[terreno] ?? []
         }
         let conMonitoreo = Set(activos.map(\.terrenoId))
         let esperando = conMonitoreo.subtracting(nivelPorTerreno.keys)
@@ -211,7 +219,9 @@ public enum Tableros {
             let etapa = EtapaTermica(nivel: ciclo.nivelAlerta)
             let estadio = ciclo.estadioBiologico.trimmingCharacters(in: .whitespaces)
             return LoteEnEtapa(monitoreoId: m.id, terreno: m.terrenoNombre, cultivo: m.cultivoNombre, plaga: m.plagaNombre,
-                               etapa: etapa, progreso: ciclo.progreso, estadio: estadio.isEmpty ? etapa.estadioPorDefecto : estadio.capitalized)
+                               etapa: etapa, progreso: ciclo.progreso,
+                               estadio: estadio.isEmpty ? etapa.estadioPorDefecto(hito: ciclo.hito) : estadio.capitalized,
+                               hito: ciclo.hito)
         }.sorted { ($0.etapa, $0.progreso) > ($1.etapa, $1.progreso) }
     }
 }
