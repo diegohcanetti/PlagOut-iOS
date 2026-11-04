@@ -175,13 +175,19 @@ struct RedTests {
         #expect(String(decoding: pedido.httpBody ?? Data(), as: UTF8.self) == #"{"conteo_despues":null}"#)
     }
 
-    @Test func elMapaPideCeldaEnLosDosNiveles() async throws {
+    @Test(arguments: [("reportes", 9, "0.17578125", "500"), ("grupos", 4, "5.625", nil)])
+    func elMapaPideCeldaEnLosDosNivelesYLimiteSoloEnReportes(nivel: String, zoom: Int, celda: String, limite: String?) async throws {
         ProtocoloFalso.preparar([.init(codigo: 200, cuerpo: String(decoding: try fixture("mapa_reportes"), as: UTF8.self))])
         let area = PlagOutAPI.AreaMapa(sur: -40, oeste: -66, norte: -28, este: -56)
-        _ = try await api(SesionFalsa(token: "t")).reportesMapa(area: area, zoom: 9, nivel: "reportes")
-        let consulta = try #require(ProtocoloFalso.pedidos.first?.url?.query)
-        #expect(consulta.contains("celda_grados=0.17578125"))
-        #expect(consulta.contains("limite=500"))
+        _ = try await api(SesionFalsa(token: "t")).reportesMapa(area: area, zoom: zoom, nivel: nivel, ambito: "comunidad", dias: 30)
+        let url = try #require(ProtocoloFalso.pedidos.last?.url)
+        let items = try #require(URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems)
+        let valores = Dictionary(items.map { ($0.name, $0.value) }, uniquingKeysWith: { a, _ in a })
+        #expect(url.path.hasSuffix("/mapa/reportes"))
+        #expect(valores["sur"] == "-40.0" && valores["oeste"] == "-66.0" && valores["norte"] == "-28.0" && valores["este"] == "-56.0")
+        #expect(valores["nivel"] == nivel && valores["zoom"] == String(zoom) && valores["celda_grados"] == celda)
+        #expect(valores["limite"] ?? nil == limite)
+        #expect(valores["ambito"] == "comunidad" && valores["dias"] == "30")
     }
 }
 
