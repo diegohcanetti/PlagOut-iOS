@@ -427,3 +427,102 @@ final class Recorrido: XCTestCase {
         esperar(app.navigationBars["Mis Monitoreos"])
     }
 }
+
+/// Recorre el mapa de alertas con la sesión que ya tenga el simulador (o con la cuenta de demo, si
+/// se pasa). Solo lee: mueve el mapa, cambia el período y abre alertas. Deja en el log el texto de
+/// estado de cada paso y guarda capturas en PLAGOUT_CAPTURAS.
+@MainActor
+final class RecorridoMapa: XCTestCase {
+    var app: XCUIApplication!
+
+    override func setUpWithError() throws {
+        continueAfterFailure = true
+        app = XCUIApplication()
+        let entorno = ProcessInfo.processInfo.environment
+        if let email = entorno["PLAGOUT_DEMO_EMAIL"], let clave = entorno["PLAGOUT_DEMO_PASSWORD"] {
+            app.launchEnvironment["PLAGOUT_DEMO_EMAIL"] = email
+            app.launchEnvironment["PLAGOUT_DEMO_PASSWORD"] = clave
+        }
+        app.launch()
+        guard app.navigationBars["Mis Monitoreos"].waitForExistence(timeout: 30) else {
+            throw XCTSkip("Sin sesión: iniciá sesión en el simulador o pasá la cuenta de demo")
+        }
+    }
+
+    func captura(_ nombre: String) {
+        guard let carpeta = ProcessInfo.processInfo.environment["PLAGOUT_CAPTURAS"] else { return }
+        let datos = XCUIScreen.main.screenshot().pngRepresentation
+        try? datos.write(to: URL(fileURLWithPath: carpeta).appendingPathComponent("\(nombre).png"))
+    }
+
+    var estado: XCUIElement { app.staticTexts["estadoMapa"] }
+
+    /// Espera a que el mapa termine de consultar y devuelve el texto de estado.
+    @discardableResult
+    func esperarEstado(_ paso: String) -> String {
+        let fin = Date().addingTimeInterval(25)
+        sleep(2)
+        while Date() < fin {
+            let texto = estado.label
+            if !texto.hasPrefix("Buscando"), !texto.hasPrefix("Mové"), !app.activityIndicators.firstMatch.exists {
+                print("MAPA[\(paso)]: \(texto)")
+                captura(paso)
+                return texto
+            }
+            sleep(1)
+        }
+        print("MAPA[\(paso)]: sin terminar: \(estado.label)")
+        captura(paso)
+        return estado.label
+    }
+
+    func testMapaDePuntos() {
+        app.tabBars.buttons["Reportes"].tap()
+        XCTAssertTrue(app.navigationBars["Alertas de plagas"].waitForExistence(timeout: 20))
+        app.buttons["Mapa de alertas"].tap()
+        XCTAssertTrue(app.navigationBars["Mapa de alertas"].waitForExistence(timeout: 20))
+        let mapa = app.maps.firstMatch
+
+        let regional = esperarEstado("m01-lotes")
+        XCTAssertFalse(regional.hasPrefix("No se"), regional)
+        // De cerca, alertas sueltas: los ajenos comparten el centro de su celda.
+        for _ in 0..<2 { mapa.pinch(withScale: 3, velocity: 2); sleep(1) }
+        let inicio = esperarEstado("m01b-cerca")
+        let pines = app.descendants(matching: .any).matching(NSPredicate(format: "label MATCHES '^[0-9]+ alertas$'"))
+        print("MAPA[pines-compartidos]: \(pines.count)")
+
+        // Varias alertas en el mismo punto: el pin abre un menú con cada una.
+        if pines.count > 0 {
+            pines.firstMatch.tap()
+            sleep(1)
+            captura("m02-menu-pin")
+            let opcion = app.buttons.matching(NSPredicate(format: "label CONTAINS ' · '")).firstMatch
+            if opcion.waitForExistence(timeout: 5) {
+                print("MAPA[menu]: \(opcion.label)")
+                opcion.tap()
+                sleep(3)
+                captura("m03-detalle")
+                app.navigationBars.buttons.element(boundBy: 0).tap()
+                // Al volver el mapa no se recentra: el estado tiene que ser el mismo.
+                let vuelta = esperarEstado("m04-vuelta")
+                print("MAPA[vuelta-igual]: \(vuelta == inicio)")
+            }
+        }
+
+        // Mundo entero: más de una vuelta y los polos.
+        for _ in 0..<4 { mapa.pinch(withScale: 0.15, velocity: -3); sleep(1) }
+        let mundo = esperarEstado("m05-mundo")
+        XCTAssertFalse(mundo.hasPrefix("No se"), mundo)
+        XCTAssertFalse(mundo.hasPrefix("No hay"), "con el mundo a la vista: \(mundo)")
+
+        // Sobre el antimeridiano.
+        for _ in 0..<3 { mapa.swipeLeft(velocity: .slow); sleep(1) }
+        let pacifico = esperarEstado("m06-antimeridiano")
+        XCTAssertFalse(pacifico.hasPrefix("No se"), pacifico)
+
+        // Cambiar el período limpia lo anterior y vuelve a pedir.
+        app.buttons["7 días"].tap()
+        let semana = esperarEstado("m07-siete-dias")
+        XCTAssertFalse(semana.hasPrefix("No se"), semana)
+    }
+}

@@ -16,24 +16,28 @@ final class DatosCampo {
     var cargado = false
     var error: String?
 
-    private var enCurso: Task<Void, Never>?
+    private var enCurso: (id: UUID, tarea: Task<Void, Never>)?
 
     /// Trae todo en paralelo. Si ya hay una carga en curso, espera esa: dos pantallas pueden
     /// pedirla a la vez. Corre en su propia tarea para que no la corte el cambio de pestaña.
     func cargar(_ api: PlagOutAPI) async {
         if let enCurso {
-            await enCurso.value
+            await enCurso.tarea.value
             return
         }
+        let id = UUID()
         let tarea = Task { await traer(api) }
-        enCurso = tarea
+        enCurso = (id, tarea)
         await tarea.value
-        enCurso = nil
+        if enCurso?.id == id { enCurso = nil }
     }
 
     private func traer(_ api: PlagOutAPI) async {
+        guard !Task.isCancelled else { return }
         cargando = !cargado
-        defer { cargando = false }
+        defer {
+            if !Task.isCancelled { cargando = false }
+        }
         do {
             async let terrenos = api.terrenos()
             async let plantaciones = api.plantaciones()
@@ -41,22 +45,28 @@ final class DatosCampo {
             if cultivos.isEmpty || plagas.isEmpty {
                 async let cultivos = api.cultivos()
                 async let plagas = api.plagas()
-                (self.cultivos, self.plagas) = try await (cultivos, plagas)
+                let catalogo = try await (cultivos, plagas)
+                guard !Task.isCancelled else { return }
+                (self.cultivos, self.plagas) = catalogo
             }
-            (self.terrenos, self.plantaciones, self.monitoreos) = try await (terrenos, plantaciones, monitoreos)
+            let datos = try await (terrenos, plantaciones, monitoreos)
+            guard !Task.isCancelled else { return }
+            (self.terrenos, self.plantaciones, self.monitoreos) = datos
             cargado = true
             error = nil
-        } catch let error as ErrorBackend {
-            self.error = error.mensaje
         } catch {
-            self.error = ErrorBackend.mensajeGenerico
+            guard !Task.isCancelled else { return }
+            self.error = (error as? ErrorBackend)?.mensaje ?? ErrorBackend.mensajeGenerico
         }
     }
 
     func vaciar() {
+        enCurso?.tarea.cancel()
+        enCurso = nil
         terrenos = []
         plantaciones = []
         monitoreos = []
+        cargando = false
         cargado = false
         error = nil
     }
